@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../jars-cms/jars-cms.iml" filepath="$PROJECT_DIR$/../jars-cms/jars-cms.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../jars-crawler/jars-crawler.iml" filepath="$PROJECT_DIR$/../jars-crawler/jars-crawler.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../jars-index/jars-index.iml" filepath="$PROJECT_DIR$/../jars-index/jars-index.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../jars-lib/jars-lib.iml" filepath="$PROJECT_DIR$/../jars-lib/jars-lib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jars-parent.iml" filepath="$PROJECT_DIR$/jars-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../jars-tag/jars-tag.iml" filepath="$PROJECT_DIR$/../jars-tag/jars-tag.iml" />
+    </modules>
+  </component>
+</project>
