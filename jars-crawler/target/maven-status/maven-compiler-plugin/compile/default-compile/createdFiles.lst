@@ -1,5 +1,0 @@
-com\arawn\crawler\StartCrawler.class
-com\arawn\dao\JarDao.class
-com\arawn\utils\JdbcUtils.class
-com\arawn\utils\PropertiesUtils.class
-com\arawn\crawler\StartCrawler$1.class
