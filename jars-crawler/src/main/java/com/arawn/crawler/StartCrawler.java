@@ -120,7 +120,7 @@ public class StartCrawler {
             }
 
             try {
-                Thread.sleep(1000);
+                Thread.sleep(500);
             } catch (InterruptedException e) {
                 logger.error("InterruptedException", e);
             }

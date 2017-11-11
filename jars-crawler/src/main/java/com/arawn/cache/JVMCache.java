@@ -11,7 +11,12 @@ public class JVMCache {
     /**
      * 排除的URL后缀
      */
-    public static String[] excludeUrl = new String[]{".pom", ".xml", ".md5", ".sha1", ".asc", ".gz", ".zip", "../"};
+    public static String[] excludeUrl = new String[]{
+            "../", ".pom", ".xml", ".md5", ".sha1",
+            ".asc", ".gz", "zip", "tgz", ".rar",
+            ".war", ".ear", ".aar", ".tar", ".mar",
+            ".exe", ".cfg", ".apklib", ".lpkg"
+    };
 
     /**
      * 等待爬取的URL
@@ -21,5 +26,5 @@ public class JVMCache {
     /**
      * 统计发现多少个目标(jar包)
      */
-    public static int totalJar;
+    public static Long totalJar = 0L;
 }

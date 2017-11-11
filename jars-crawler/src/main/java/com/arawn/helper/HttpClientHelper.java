@@ -69,7 +69,7 @@ public class HttpClientHelper {
             pool = new PoolingHttpClientConnectionManager(
                     socketFactoryRegistry);
             // 将最大连接数增加到200，实际项目最好从配置文件中读取这个值
-            pool.setMaxTotal(20);
+            pool.setMaxTotal(200);
             // 设置最大路由
             pool.setDefaultMaxPerRoute(2);
             // 根据默认超时限制初始化requestConfig
