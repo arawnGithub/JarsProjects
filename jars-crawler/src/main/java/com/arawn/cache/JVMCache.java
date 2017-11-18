@@ -11,12 +11,12 @@ public class JVMCache {
     /**
      * 排除的URL后缀
      */
-    public static String[] excludeUrl = new String[]{
-            "../", ".pom", ".xml", ".md5", ".sha1",
-            ".asc", ".gz", "zip", "tgz", ".rar",
-            ".war", ".ear", ".aar", ".tar", ".mar",
-            ".exe", ".cfg", ".apklib", ".lpkg"
-    };
+    public static String excludeUrl = "../";
+
+    /**
+     * 匹配URL地址
+     */
+    public static String regex = ".*/";
 
     /**
      * 等待爬取的URL

@@ -142,7 +142,7 @@ public class StartCrawler {
             String url = link.attr("href");
             String realUrl = prefixUrl + url;
 
-            if (excludeUrl(url)) {
+            if (JVMCache.excludeUrl.equals(url)) {
                 continue;
             }
 
@@ -151,28 +151,11 @@ public class StartCrawler {
                 logger.info("发现第" + JVMCache.totalJar + "目标：" + realUrl);
 
                 addJar(url, realUrl);
-            } else { // 需要继续爬取的URL
+            } else if (url.matches(JVMCache.regex)) { // 需要继续爬取的URL
                 logger.info("爬虫url队列新增url:" + realUrl);
                 addUrl(realUrl, "解析网页");
             }
         }
-    }
-
-    /**
-     * 判断是否是排除的url
-     * @param url
-     * @return
-     */
-    public static boolean excludeUrl(String url) {
-        boolean exclude = false;
-        for (int i = 0; i < JVMCache.excludeUrl.length; i++) {
-            if (url.endsWith(JVMCache.excludeUrl[i])) {
-                exclude = true;
-                break;
-            }
-        }
-
-        return exclude;
     }
 
     /**

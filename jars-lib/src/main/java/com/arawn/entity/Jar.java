@@ -1,10 +1,15 @@
 package com.arawn.entity;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.Date;
 
 /**
  * Created by ArawN on 2017/10/29.
  */
+@Getter
+@Setter
 public class Jar {
 
     /**
@@ -61,92 +66,4 @@ public class Jar {
      * 更新时间
      */
     private Date updateTime;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getJarId() {
-        return jarId;
-    }
-
-    public void setJarId(String jarId) {
-        this.jarId = jarId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getPath() {
-        return path;
-    }
-
-    public void setPath(String path) {
-        this.path = path;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public Integer getClick() {
-        return click;
-    }
-
-    public void setClick(Integer click) {
-        this.click = click;
-    }
-
-    public Integer getDownHit() {
-        return downHit;
-    }
-
-    public void setDownHit(Integer downHit) {
-        this.downHit = downHit;
-    }
-
-    public Integer getIndexState() {
-        return indexState;
-    }
-
-    public void setIndexState(Integer indexState) {
-        this.indexState = indexState;
-    }
-
-    public Integer getTagState() {
-        return tagState;
-    }
-
-    public void setTagState(Integer tagState) {
-        this.tagState = tagState;
-    }
-
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
-    }
 }

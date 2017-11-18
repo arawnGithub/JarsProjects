@@ -32,6 +32,12 @@
             <groupId>com.mchange</groupId>
             <artifactId>c3p0</artifactId>
         </dependency>
+
+        <!-- 添加lombok依赖 -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

@@ -1,8 +1,13 @@
 package com.arawn.entity;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * Created by ArawN on 2017/10/29.
  */
+@Getter
+@Setter
 public class Tag {
 
     /**
@@ -14,20 +19,4 @@ public class Tag {
      * 标签名称
      */
     private String name;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 }

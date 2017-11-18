@@ -73,9 +73,9 @@ public class HttpClientHelper {
             // 设置最大路由
             pool.setDefaultMaxPerRoute(2);
             // 根据默认超时限制初始化requestConfig
-            int socketTimeout = 10000;
-            int connectTimeout = 5000;
-            int connectionRequestTimeout = 5000;
+            int socketTimeout = 20000;
+            int connectTimeout = 10000;
+            int connectionRequestTimeout = 10000;
             requestConfig = RequestConfig.custom()
                     .setConnectionRequestTimeout(connectionRequestTimeout)
                     .setSocketTimeout(socketTimeout)
