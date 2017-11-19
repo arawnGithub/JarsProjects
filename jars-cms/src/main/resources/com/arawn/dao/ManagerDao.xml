@@ -5,8 +5,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.arawn.dao.ManagerDao">
     <resultMap id="managerResult" type="Manager">
         <result property="id" column="id"/>
-        <result property="userName" column="user_name"/>
+        <result property="username" column="username"/>
         <result property="password" column="password"/>
     </resultMap>
+
+    <select id="queryByUsername" parameterType="string" resultMap="managerResult">
+        SELECT * FROM t_manager WHERE username = #{username}
+    </select>
 
 </mapper> 

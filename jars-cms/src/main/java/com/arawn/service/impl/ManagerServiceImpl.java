@@ -1,6 +1,7 @@
 package com.arawn.service.impl;
 
 import com.arawn.dao.ManagerDao;
+import com.arawn.entity.Manager;
 import com.arawn.service.ManagerService;
 import org.springframework.stereotype.Service;
 
@@ -15,4 +16,9 @@ public class ManagerServiceImpl implements ManagerService {
 
     @Resource
     private ManagerDao managerDao;
+
+    @Override
+    public Manager queryByUsername(String username) {
+        return managerDao.queryByUsername(username);
+    }
 }
