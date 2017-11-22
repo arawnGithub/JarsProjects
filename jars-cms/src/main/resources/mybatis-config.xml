@@ -6,6 +6,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	
 	<!-- 别名 -->
 	<typeAliases>
-		<package name="com.arawn.entity"/>
+		<package name="com.arawn.cms.entity"/>
 	</typeAliases>
 </configuration>

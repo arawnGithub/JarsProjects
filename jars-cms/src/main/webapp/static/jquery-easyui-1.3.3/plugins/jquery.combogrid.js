@@ -84,7 +84,7 @@ var _19;
 if(!tr.length){
 _19=(dir=="next"?0:_18-1);
 }else{
-var _19=parseInt(tr.attr("datagrid-row-index"));
+var _19=parseInt(tr.attr("datagrid-row-main"));
 _19+=(dir=="next"?1:-1);
 if(_19<0){
 _19=_18-1;
@@ -169,7 +169,7 @@ if(!tr.length){
 return;
 }
 _2e.remainText=false;
-var _31=parseInt(tr.attr("datagrid-row-index"));
+var _31=parseInt(tr.attr("datagrid-row-main"));
 if(_2f.multiple){
 if(tr.hasClass("datagrid-row-selected")){
 _30.datagrid("unselectRow",_31);

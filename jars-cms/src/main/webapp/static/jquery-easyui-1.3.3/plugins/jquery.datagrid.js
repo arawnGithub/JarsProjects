@@ -643,8 +643,8 @@ dc.view2.children("div.datagrid-header,div.datagrid-footer")._scrollLeft($(this)
 dc.body2.children("table.datagrid-btable-frozen").css("left",-$(this)._scrollLeft());
 });
 function _7e(tr){
-if(tr.attr("datagrid-row-index")){
-return parseInt(tr.attr("datagrid-row-index"));
+if(tr.attr("datagrid-row-main")){
+return parseInt(tr.attr("datagrid-row-main"));
 }else{
 return tr.attr("node-id");
 }
@@ -961,7 +961,7 @@ return _cc.selectedRows;
 }else{
 var _cf=[];
 _cd.finder.getTr(_cb,"","selected",2).each(function(){
-var _d0=parseInt($(this).attr("datagrid-row-index"));
+var _d0=parseInt($(this).attr("datagrid-row-main"));
 _cf.push(_ce.rows[_d0]);
 });
 return _cf;
@@ -1904,7 +1904,7 @@ var cls=(i%2&&opts.striped)?"class=\"datagrid-row datagrid-row-alt\"":"class=\"d
 var _1e5=opts.rowStyler?opts.rowStyler.call(_1df,i,rows[i]):"";
 var _1e6=_1e5?"style=\""+_1e5+"\"":"";
 var _1e7=_1e2.rowIdPrefix+"-"+(_1e1?1:2)+"-"+i;
-_1e4.push("<tr id=\""+_1e7+"\" datagrid-row-index=\""+i+"\" "+cls+" "+_1e6+">");
+_1e4.push("<tr id=\""+_1e7+"\" datagrid-row-main=\""+i+"\" "+cls+" "+_1e6+">");
 _1e4.push(this.renderRow.call(this,_1df,_1e3,_1e1,i,rows[i]));
 _1e4.push("</tr>");
 }
@@ -1916,7 +1916,7 @@ var rows=$.data(_1e8,"datagrid").footer||[];
 var _1eb=$(_1e8).datagrid("getColumnFields",_1ea);
 var _1ec=["<table class=\"datagrid-ftable\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\"><tbody>"];
 for(var i=0;i<rows.length;i++){
-_1ec.push("<tr class=\"datagrid-row\" datagrid-row-index=\""+i+"\">");
+_1ec.push("<tr class=\"datagrid-row\" datagrid-row-main=\""+i+"\">");
 _1ec.push(this.renderRow.call(this,_1e8,_1eb,_1ea,i,rows[i]));
 _1ec.push("</tr>");
 }
@@ -2011,7 +2011,7 @@ function _203(_204){
 var _205=_204?1:2;
 for(var i=data.rows.length-1;i>=_201;i--){
 var tr=opts.finder.getTr(_200,i,"body",_205);
-tr.attr("datagrid-row-index",i+1);
+tr.attr("datagrid-row-main",i+1);
 tr.attr("id",_202.rowIdPrefix+"-"+_205+"-"+(i+1));
 if(_204&&opts.rownumbers){
 var _206=i+2;
@@ -2026,7 +2026,7 @@ function _207(_208){
 var _209=_208?1:2;
 var _20a=$(_200).datagrid("getColumnFields",_208);
 var _20b=_202.rowIdPrefix+"-"+_209+"-"+_201;
-var tr="<tr id=\""+_20b+"\" class=\"datagrid-row\" datagrid-row-index=\""+_201+"\"></tr>";
+var tr="<tr id=\""+_20b+"\" class=\"datagrid-row\" datagrid-row-main=\""+_201+"\"></tr>";
 if(_201>=data.rows.length){
 if(data.rows.length){
 opts.finder.getTr(_200,"","last",_209).after(tr);
@@ -2053,7 +2053,7 @@ function _20f(_210){
 var _211=_210?1:2;
 for(var i=_20d+1;i<data.rows.length;i++){
 var tr=opts.finder.getTr(_20c,i,"body",_211);
-tr.attr("datagrid-row-index",i-1);
+tr.attr("datagrid-row-main",i-1);
 tr.attr("id",_20e.rowIdPrefix+"-"+_211+"-"+(i-1));
 if(_210&&opts.rownumbers){
 var _212=i;
@@ -2108,12 +2108,12 @@ return tr1.add(tr2);
 if(type=="body"){
 var tr=$("#"+_21e.rowIdPrefix+"-"+_21d+"-"+_21c);
 if(!tr.length){
-tr=(_21d==1?dc.body1:dc.body2).find(">table>tbody>tr[datagrid-row-index="+_21c+"]");
+tr=(_21d==1?dc.body1:dc.body2).find(">table>tbody>tr[datagrid-row-main="+_21c+"]");
 }
 return tr;
 }else{
 if(type=="footer"){
-return (_21d==1?dc.footer1:dc.footer2).find(">table>tbody>tr[datagrid-row-index="+_21c+"]");
+return (_21d==1?dc.footer1:dc.footer2).find(">table>tbody>tr[datagrid-row-main="+_21c+"]");
 }else{
 if(type=="selected"){
 return (_21d==1?dc.body1:dc.body2).find(">table>tbody>tr.datagrid-row-selected");
@@ -2125,13 +2125,13 @@ if(type=="checked"){
 return (_21d==1?dc.body1:dc.body2).find(">table>tbody>tr.datagrid-row:has(div.datagrid-cell-check input:checked)");
 }else{
 if(type=="last"){
-return (_21d==1?dc.body1:dc.body2).find(">table>tbody>tr[datagrid-row-index]:last");
+return (_21d==1?dc.body1:dc.body2).find(">table>tbody>tr[datagrid-row-main]:last");
 }else{
 if(type=="allbody"){
-return (_21d==1?dc.body1:dc.body2).find(">table>tbody>tr[datagrid-row-index]");
+return (_21d==1?dc.body1:dc.body2).find(">table>tbody>tr[datagrid-row-main]");
 }else{
 if(type=="allfooter"){
-return (_21d==1?dc.footer1:dc.footer2).find(">table>tbody>tr[datagrid-row-index]");
+return (_21d==1?dc.footer1:dc.footer2).find(">table>tbody>tr[datagrid-row-main]");
 }
 }
 }
@@ -2142,7 +2142,7 @@ return (_21d==1?dc.footer1:dc.footer2).find(">table>tbody>tr[datagrid-row-index]
 }
 }
 },getRow:function(_21f,p){
-var _220=(typeof p=="object")?p.attr("datagrid-row-index"):p;
+var _220=(typeof p=="object")?p.attr("datagrid-row-main"):p;
 return $.data(_21f,"datagrid").data.rows[parseInt(_220)];
 }},view:_1de,onBeforeLoad:function(_221){
 },onLoadSuccess:function(){

@@ -249,7 +249,7 @@
 				width:menu.outerWidth(),
 				height:menu.outerHeight()
 			});
-			menu.css('z-index', $.fn.menu.defaults.zIndex++);
+			menu.css('z-main', $.fn.menu.defaults.zIndex++);
 			if (menu.hasClass('menu-top')){
 				$.data(menu[0], 'menu').options.onShow.call(menu[0]);
 			}

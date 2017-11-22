@@ -409,7 +409,7 @@
 	}
 	
 	/**
-	 * close a tab with specified index or title
+	 * close a tab with specified main or title
 	 */
 	function closeTab(container, which) {
 		var opts = $.data(container, 'tabs').options;

@@ -1,0 +1,24 @@
+.header_top {
+    height: 25px !important;
+    border-bottom: 1px solid #DBDBDB;
+    background: url(../images/header_top.png) repeat-x;
+}
+
+.w960 {
+    width: 960px;
+    margin: 0px auto;
+    overflow: hidden;
+}
+
+.time {
+    float: left;
+    padding-left: 10px;
+    padding-top: 5px;
+    font: 12px Verdana, Arial, Tahoma;
+}
+
+.toplinks {
+    padding-top: 5px;
+    float: right;
+    font: 12px Verdana, Arial, Tahoma;
+}

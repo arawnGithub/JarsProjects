@@ -302,7 +302,7 @@
 			t.find('td[abbr="'+current+'"]').addClass('calendar-selected');
 		}
 		
-		// calulate the saturday and sunday index
+		// calulate the saturday and sunday main
 		var saIndex = 6 - opts.firstDay;
 		var suIndex = saIndex + 1;
 		if (saIndex >= 7) saIndex -= 7;

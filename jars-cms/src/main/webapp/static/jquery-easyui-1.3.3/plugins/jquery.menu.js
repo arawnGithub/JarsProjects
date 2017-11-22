@@ -199,7 +199,7 @@ if(!_28[0].shadow){
 _28[0].shadow=$("<div class=\"menu-shadow\"></div>").insertAfter(_28);
 }
 _28[0].shadow.css({display:"block",zIndex:$.fn.menu.defaults.zIndex++,left:_28.css("left"),top:_28.css("top"),width:_28.outerWidth(),height:_28.outerHeight()});
-_28.css("z-index",$.fn.menu.defaults.zIndex++);
+_28.css("z-main",$.fn.menu.defaults.zIndex++);
 if(_28.hasClass("menu-top")){
 $.data(_28[0],"menu").options.onShow.call(_28[0]);
 }

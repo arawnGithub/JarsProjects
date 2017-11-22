@@ -23,7 +23,7 @@
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<!-- 自动扫描mappers.xml文件 -->
-		<property name="mapperLocations" value="classpath:com/arawn/dao/*.xml"></property>
+		<property name="mapperLocations" value="classpath:com/arawn/cms/dao/*.xml"></property>
 		<!-- mybatis配置文件 -->
 		<property name="configLocation" value="classpath:mybatis-config.xml"></property>
 	</bean>
@@ -41,7 +41,7 @@
 	</bean>
 	
 	<!-- 自定义Realm -->
-	<bean id="myRealm" class="com.arawn.realm.MyRealm"/>
+	<bean id="myRealm" class="com.arawn.cms.realm.MyRealm"/>
 	
 	<!-- 安全管理器 -->
 	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">  
@@ -98,11 +98,11 @@
     <!-- 配置事务切面 -->  
     <aop:config>  
         <aop:pointcut id="serviceOperation"  
-            expression="execution(* com.arawn.service.*.*(..))" />
+            expression="execution(* com.arawn.cms.service.*.*(..))" />
         <aop:advisor advice-ref="txAdvice" pointcut-ref="serviceOperation" />  
     </aop:config>  
     
    	<!-- 自动扫描 -->
-	<context:component-scan base-package="com.arawn.service" />
+	<context:component-scan base-package="com.arawn.cms.service" />
 
 </beans>

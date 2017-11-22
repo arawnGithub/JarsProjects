@@ -60,15 +60,15 @@
 //			var t = $(currTarget);
 //			if (!t.length){return;}
 //			var opts = $.data(currTarget, 'propertygrid').options;
-//			var index = opts.editIndex;
-//			if (index == undefined){return;}
-//			var ed = t.datagrid('getEditors', index)[0];
+//			var main = opts.editIndex;
+//			if (main == undefined){return;}
+//			var ed = t.datagrid('getEditors', main)[0];
 //			if (ed){
 //				ed.target.blur();
-//				if (t.datagrid('validateRow', index)){
-//					t.datagrid('endEdit', index);
+//				if (t.datagrid('validateRow', main)){
+//					t.datagrid('endEdit', main);
 //				} else {
-//					t.datagrid('cancelEdit', index);
+//					t.datagrid('cancelEdit', main);
 //				}
 //			}
 //			opts.editIndex = undefined;
@@ -145,7 +145,7 @@
 			for(var i=0; i<groups.length; i++){
 				var group = groups[i];
 				
-				table.push('<div class="datagrid-group" group-index=' + i + ' style="height:25px;overflow:hidden;border-bottom:1px solid #ccc;">');
+				table.push('<div class="datagrid-group" group-main=' + i + ' style="height:25px;overflow:hidden;border-bottom:1px solid #ccc;">');
 				table.push('<table cellspacing="0" cellpadding="0" border="0" style="height:100%"><tbody>');
 				table.push('<tr>');
 				table.push('<td style="border:0;">');
@@ -166,7 +166,7 @@
 					var styleValue = opts.rowStyler ? opts.rowStyler.call(target, index, group.rows[j]) : '';
 					var style = styleValue ? 'style="' + styleValue + '"' : '';
 					var rowId = state.rowIdPrefix + '-' + (frozen?1:2) + '-' + index;
-					table.push('<tr id="' + rowId + '" datagrid-row-index="' + index + '" ' + cls + ' ' + style + '>');
+					table.push('<tr id="' + rowId + '" datagrid-row-main="' + index + '" ' + cls + ' ' + style + '>');
 					table.push(this.renderRow.call(this, target, fields, frozen, index, group.rows[j]));
 					table.push('</tr>');
 					index++;
@@ -194,7 +194,7 @@
 			$('<td style="border:0;text-align:center;width:25px"><span class="datagrid-row-expander datagrid-row-collapse" style="display:inline-block;width:16px;height:16px;cursor:pointer">&nbsp;</span></td>').insertBefore(group.find('td'));
 			
 			view.find('div.datagrid-group').each(function(){
-				var groupIndex = $(this).attr('group-index');
+				var groupIndex = $(this).attr('group-main');
 				$(this).find('span.datagrid-row-expander').bind('click', {groupIndex:groupIndex}, function(e){
 					if ($(this).hasClass('datagrid-row-collapse')){
 						$(target).datagrid('collapseGroup', e.data.groupIndex);
@@ -251,7 +251,7 @@
 	        return jq.each(function(){
 	            var view = $.data(this, 'datagrid').dc.view;
 	            if (groupIndex!=undefined){
-	                var group = view.find('div.datagrid-group[group-index="'+groupIndex+'"]');
+	                var group = view.find('div.datagrid-group[group-main="'+groupIndex+'"]');
 	            } else {
 	                var group = view.find('div.datagrid-group');
 	            }
@@ -267,7 +267,7 @@
 	        return jq.each(function(){
 	            var view = $.data(this, 'datagrid').dc.view;
 	            if (groupIndex!=undefined){
-	                var group = view.find('div.datagrid-group[group-index="'+groupIndex+'"]');
+	                var group = view.find('div.datagrid-group[group-main="'+groupIndex+'"]');
 	            } else {
 	                var group = view.find('div.datagrid-group');
 	            }

@@ -13,7 +13,6 @@
         <httpclient.version>4.5.2</httpclient.version>
         <jsoup.version>1.10.1</jsoup.version>
         <log4j.version>1.2.16</log4j.version>
-        <slf4j-log4j12.version>1.7.12</slf4j-log4j12.version>
         <mysql-connector-java.version>5.1.37</mysql-connector-java.version>
         <c3p0.version>0.9.5.2</c3p0.version>
         <lucene.version>5.3.1</lucene.version>
@@ -56,12 +55,6 @@
                 <groupId>log4j</groupId>
                 <artifactId>log4j</artifactId>
                 <version>${log4j.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-log4j12</artifactId>
-                <version>${slf4j-log4j12.version}</version>
             </dependency>
 
             <!-- 添加Jdbc依赖 -->
