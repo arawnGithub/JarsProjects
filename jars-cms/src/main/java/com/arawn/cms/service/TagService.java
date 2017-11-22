@@ -15,5 +15,5 @@ public interface TagService {
      * @param n
      * @return
      */
-    List<Tag> listByRandom(Integer n);
+    List<Tag> listByRand(Integer n);
 }

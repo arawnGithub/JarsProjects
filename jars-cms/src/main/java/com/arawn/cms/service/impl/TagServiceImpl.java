@@ -19,7 +19,7 @@ public class TagServiceImpl implements TagService {
     private TagDao tagDao;
 
     @Override
-    public List<Tag> listByRandom(Integer n) {
-        return tagDao.listByRandom(n);
+    public List<Tag> listByRand(Integer n) {
+        return tagDao.listByRand(n);
     }
 }

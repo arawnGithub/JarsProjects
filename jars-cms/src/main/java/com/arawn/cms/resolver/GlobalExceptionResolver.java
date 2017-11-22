@@ -1,4 +1,4 @@
-package com.arawn.cms.exception;
+package com.arawn.cms.resolver;
 
 import org.apache.log4j.Logger;
 import org.springframework.web.servlet.HandlerExceptionResolver;

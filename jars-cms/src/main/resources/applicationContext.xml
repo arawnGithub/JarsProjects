@@ -10,6 +10,8 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd  
         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 
+	<!-- 全局异常处理器 -->
+	<bean id="globalExceptionResolver" class="com.arawn.cms.resolver.GlobalExceptionResolver"></bean>
 	
 	<!-- 配置数据源 -->
 	<bean id="dataSource"
@@ -30,7 +32,7 @@
 
 	<!-- DAO接口所在包名，Spring会自动查找其下的类 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.arawn.dao" />
+		<property name="basePackage" value="com.arawn.cms.dao" />
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
 	</bean>
 
