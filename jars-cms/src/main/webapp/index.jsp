@@ -1,6 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -17,17 +16,34 @@
             padding-bottom: 40px;
         }
     </style>
+    <script type="text/javascript">
+        $(function () {
+            // 给span注册点击事件
+            $("#search").click(function () {
+                search();
+            });
+
+            // 给搜索文本框注册enter回车事件
+            $("#sInput").keydown(function (e) {
+                if (e.keyCode == 13) {
+                    search();
+                }
+            });
+
+            function search() {
+                var q = $("#sInput").val();
+                if (q == null || q == "") {
+                    $("#sInput").focus();
+                    return;
+                }
+                window.location.href = "${pageContext.request.contextPath}/jar/query.do?q=" + q;
+            }
+        });
+    </script>
 </head>
 <body>
 
-<div class="header_top">
-    <div class="w960">
-        <span class="time">Jar包下载网</span>
-        <div class="toplinks">
-            [&nbsp;<a href="http://sighttp.qq.com/authd?IDKEY=b97fe785cac444840e41ff0dfc1c6c67fa2eb229a524f0ab" target="_blank">联系站长</a>&nbsp;]
-        </div>
-    </div>
-</div>
+<jsp:include page="/foreground/common/header.jsp"/>
 
 <div class="container">
 
@@ -57,20 +73,15 @@
                 <font color="red">&nbsp;&nbsp;猜你喜欢：</font>
                 <hr style="margin-top: 2px; margin-bottom: 10px;">
                 <c:forEach var="tag" items="${tagList}">
-                    <li><a href="${pageContext.request.contextPath}/jar/query.do?tagName=${tag.name}" target="_blank" title="${tag.name}.jar下载">${tag.name}.jar</a></li>
+                    <li><a href="${pageContext.request.contextPath}/jar/query.do?q=${tag.name}" target="_blank"
+                           title="${tag.name}.jar下载">${tag.name}.jar</a></li>
                 </c:forEach>
             </ul>
         </div>
         <div class="col-md-2"></div>
     </div>
 
-    <div class="row">
-        <div class="col-md-12">
-            <div align="center" style="padding-top: 120px">
-                Copyright © Jar包下载网
-            </div>
-        </div>
-    </div>
+    <jsp:include page="/foreground/common/footer.jsp"/>
 </div>
 </body>
 </html>
