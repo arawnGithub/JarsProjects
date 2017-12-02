@@ -10,6 +10,9 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd  
         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 
+	<!-- jar包索引类 -->
+	<bean id="jarIndex" class="com.arawn.cms.index.JarIndex"/>
+
 	<!-- 全局异常处理器 -->
 	<bean id="globalExceptionResolver" class="com.arawn.cms.resolver.GlobalExceptionResolver"></bean>
 	

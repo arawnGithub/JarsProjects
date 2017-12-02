@@ -69,3 +69,26 @@
     padding-left: 6px;
     float: left;
 }
+
+.data_list .datas {
+    padding: 5px;
+}
+
+.data_list .datas ul {
+    list-style-type: none;
+    padding-left: 2px;
+}
+
+.data_list .datas ul li {
+    margin-top: 10px;
+}
+
+.data_list .search {
+    padding: 5px;
+}
+
+.search .title a {
+    color: #256EB1;
+    font-weight: normal;
+    text-decoration: underline;
+}

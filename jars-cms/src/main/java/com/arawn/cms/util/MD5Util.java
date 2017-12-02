@@ -6,7 +6,7 @@ import org.apache.shiro.crypto.hash.Md5Hash;
  * Md5工具类
  * Created by ArawN on 2017/11/18.
  */
-public class Md5Util {
+public class MD5Util {
 
     /**
      * Md5盐

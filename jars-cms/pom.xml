@@ -172,6 +172,12 @@
             <artifactId>lombok</artifactId>
         </dependency>
 
+        <!-- 添加fastjson依赖 -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+        </dependency>
+
     </dependencies>
 
 

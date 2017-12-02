@@ -16,6 +16,30 @@
             padding-bottom: 40px;
         }
     </style>
+    <script type="text/javascript">
+        $(function () {
+            // 给span注册点击事件
+            $("#search").click(function () {
+                search();
+            });
+
+            // 给搜索文本框注册enter回车事件
+            $("#sInput").keydown(function (e) {
+                if (e.keyCode == 13) {
+                    search();
+                }
+            });
+
+            function search() {
+                var q = $("#sInput").val();
+                if (q == null || q == "") {
+                    $("#sInput").focus();
+                    return;
+                }
+                window.location.href = "${pageContext.request.contextPath}/jar/query.do?q=" + q;
+            }
+        });
+    </script>
 </head>
 <body>
 
@@ -44,25 +68,61 @@
                 <a href="${pageContext.request.contextPath}/jar/query.do?q=itext" title="itext.jar下载">itext</a>&nbsp;&nbsp;
             </div>
         </div>
+
     </div>
 
     <div class="row" style="padding-top: 20px;">
-        <div class="col-md-8"></div>
+        <div class="col-md-8">
+            <div class="data_list">
+                <div class="data_list_title">
+                    <img src="${pageContext.request.contextPath}/static/images/search_icon.png"/>
+                    搜索&nbsp;<font color="red">${q}</font>&nbsp;的结果 &nbsp;(总共搜索到&nbsp;${resultTotal}&nbsp;条记录)
+                </div>
+
+                <div class="datas search">
+                    <ul>
+                        <c:choose>
+                            <c:when test="${resultTotal == 0 }">
+                                <div align="center" style="padding-top: 20px">未查询到结果，请换个关键字试试看(注意：仅支持英文jar包名称搜索，多个关键字之间用空格隔开)</div>
+                            </c:when>
+                            <c:otherwise>
+                                <c:forEach var="jar" items="${jarList}">
+                                    <li style="margin-bottom: 20px">
+                                        <span class="title"><a href="${pageContext.request.contextPath}/jar/${jar.jarId}.html" target="_blank" title="${jar.name}.jar下载">${jar.hasTagName}</a></span>
+                                    </li>
+                                </c:forEach>
+                            </c:otherwise>
+                        </c:choose>
+                    </ul>
+                </div>
+
+                <nav>
+                    <ul class="pagination pagination-sm">
+                        ${pageCode}
+                    </ul>
+                </nav>
+
+            </div>
+        </div>
+
         <div class="col-md-4">
             <div class="data_list">
                 <div class="data_list_title">
                     <img src="${pageContext.request.contextPath}/static/images/tag_icon.png"/>
                     jar包标签
                 </div>
+
                 <div>
                     <ul id="jars" class="resultJars">
-                        <c:forEach var="tag" items="${tagList }">
+                        <c:forEach var="tag" items="${tagList}">
                             <li><a href='${pageContext.request.contextPath}/jar/query.do?q=${tag.name}' target='_blank' title='${tag.name}.jar下载'>${tag.name}.jar</a></li>
                         </c:forEach>
                     </ul>
                 </div>
+
             </div>
         </div>
+
     </div>
 
     <jsp:include page="/foreground/common/footer.jsp"/>
