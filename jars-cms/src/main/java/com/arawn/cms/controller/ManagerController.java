@@ -2,7 +2,7 @@ package com.arawn.cms.controller;
 
 import com.arawn.cms.service.ManagerService;
 import com.arawn.cms.entity.Manager;
-import com.arawn.cms.utils.Md5Utils;
+import com.arawn.cms.util.Md5Util;
 import org.apache.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
@@ -38,7 +38,7 @@ public class ManagerController {
     public String login(Manager manager, HttpServletRequest request) throws Exception {
         Subject subject = SecurityUtils.getSubject();
         UsernamePasswordToken token = new UsernamePasswordToken(manager.getUsername(),
-                Md5Utils.md5(manager.getPassword(), Md5Utils.SALT));
+                Md5Util.md5(manager.getPassword(), Md5Util.SALT));
         try {
             subject.login(token); // 登录验证
             logger.info("登录成功 ==> username:" + token.getPrincipal());

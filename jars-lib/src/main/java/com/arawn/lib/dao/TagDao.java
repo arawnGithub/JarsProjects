@@ -1,7 +1,7 @@
 package com.arawn.lib.dao;
 
 import com.arawn.lib.entity.Tag;
-import com.arawn.lib.utils.JdbcUtils_C3P0;
+import com.arawn.lib.util.JdbcUtil_C3P0;
 import org.apache.log4j.Logger;
 
 import java.sql.Connection;
@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 /**
+ * 标签Dao
  * Created by ArawN on 2017/10/29.
  */
 public class TagDao {
@@ -21,7 +22,7 @@ public class TagDao {
      * @return
      */
     public boolean existByName(String name) {
-        Connection connection = JdbcUtils_C3P0.getConnection();
+        Connection connection = JdbcUtil_C3P0.getConnection();
         String sql = "SELECT * FROM t_tag WHERE name=?";
 
         boolean exist = true;
@@ -35,7 +36,7 @@ public class TagDao {
         } catch (Exception e) {
             logger.error("TagDao existByName ==>", e);
         } finally {
-            JdbcUtils_C3P0.release(connection);
+            JdbcUtil_C3P0.release(connection);
         }
         return exist;
     }
@@ -45,7 +46,7 @@ public class TagDao {
      * @param tag
      */
     public void insert(Tag tag) {
-        Connection connection = JdbcUtils_C3P0.getConnection();
+        Connection connection = JdbcUtil_C3P0.getConnection();
 
         try {
             String sql = "INSERT INTO t_tag VALUES(NULL,?)";
@@ -57,7 +58,7 @@ public class TagDao {
         } catch (Exception e) {
             logger.error("TagDao insert ==>", e);
         } finally {
-            JdbcUtils_C3P0.release(connection);
+            JdbcUtil_C3P0.release(connection);
         }
     }
 

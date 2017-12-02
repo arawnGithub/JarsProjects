@@ -4,11 +4,13 @@ import com.arawn.lib.dao.JarDao;
 import com.arawn.lib.dao.TagDao;
 import com.arawn.lib.entity.Jar;
 import com.arawn.lib.entity.Tag;
+import com.arawn.tag.constant.TagConstant;
 import org.apache.log4j.Logger;
 
 import java.util.List;
 
 /**
+ * 标签起始类
  * Created by ArawN on 2017/9/23.
  */
 public class TagMain {
@@ -33,9 +35,11 @@ public class TagMain {
         List<Jar> jarList = jarDao.listByParam(param);
 
         for (Jar jar : jarList) {
-            String[] nameArray = jar.getName().replaceAll(".jar", "").split("-");
+            String[] nameArray = jar.getName()
+                    .replaceAll(TagConstant.POINT_JAR, TagConstant.EMPTY)
+                    .split(TagConstant.HYPHEN);
             for (String name : nameArray) {
-                if (name.contains(".")) {
+                if (name.contains(TagConstant.POINT)) {
                     continue;
                 }
 

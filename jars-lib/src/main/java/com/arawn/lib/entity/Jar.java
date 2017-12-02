@@ -6,6 +6,7 @@ import lombok.Setter;
 import java.util.Date;
 
 /**
+ * Jar包实体
  * Created by ArawN on 2017/10/29.
  */
 @Getter

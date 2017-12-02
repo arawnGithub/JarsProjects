@@ -1,4 +1,4 @@
-package com.arawn.cms.utils;
+package com.arawn.cms.util;
 
 import org.apache.shiro.crypto.hash.Md5Hash;
 
@@ -6,7 +6,7 @@ import org.apache.shiro.crypto.hash.Md5Hash;
  * Md5工具类
  * Created by ArawN on 2017/11/18.
  */
-public class Md5Utils {
+public class Md5Util {
 
     /**
      * Md5盐

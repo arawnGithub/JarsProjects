@@ -1,4 +1,4 @@
-package com.arawn.lib.utils;
+package com.arawn.lib.util;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 import org.apache.log4j.Logger;
@@ -9,9 +9,9 @@ import java.sql.Connection;
  * c3p0工具类
  * Created by ArawN on 2017/10/31.
  */
-public class JdbcUtils_C3P0 {
+public class JdbcUtil_C3P0 {
 
-    private static Logger logger = Logger.getLogger(JdbcUtils_C3P0.class);
+    private static Logger logger = Logger.getLogger(JdbcUtil_C3P0.class);
 
     private static ComboPooledDataSource dataSource;
 

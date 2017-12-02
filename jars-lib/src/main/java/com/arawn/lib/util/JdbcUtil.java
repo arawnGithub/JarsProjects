@@ -1,4 +1,4 @@
-package com.arawn.lib.utils;
+package com.arawn.lib.util;
 
 import com.arawn.lib.constant.DBConstant;
 import org.apache.log4j.Logger;
@@ -10,9 +10,9 @@ import java.sql.DriverManager;
  * Jdbc工具类
  * Created by ArawN on 2017/9/10.
  */
-public class JdbcUtils {
+public class JdbcUtil {
 
-    private static Logger logger = Logger.getLogger(JdbcUtils.class);
+    private static Logger logger = Logger.getLogger(JdbcUtil.class);
 
     /**
      * 获取数据库连接

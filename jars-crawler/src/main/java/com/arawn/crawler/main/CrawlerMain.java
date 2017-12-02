@@ -1,6 +1,9 @@
 package com.arawn.crawler.main;
 
 import com.arawn.crawler.cache.JVMCache;
+import com.arawn.crawler.constant.CrawlerConstant;
+import com.arawn.crawler.em.LogMessageEnum;
+import com.arawn.crawler.util.StringUtil;
 import com.arawn.lib.dao.JarDao;
 import com.arawn.lib.entity.Jar;
 import com.arawn.crawler.runnable.CrawlerRunnable;
@@ -22,9 +25,9 @@ import java.util.concurrent.ThreadPoolExecutor;
  * 爬虫起始类
  * Created by ArawN on 2017/9/9.
  */
-public class StartCrawler {
+public class CrawlerMain {
 
-    private static Logger logger = Logger.getLogger(StartCrawler.class);
+    private static Logger logger = Logger.getLogger(CrawlerMain.class);
 
     /**
      * jar包Dao
@@ -49,12 +52,12 @@ public class StartCrawler {
         FileReader fileReader = null;
         BufferedReader bufferedReader = null;
         try {
-            fileReader = new FileReader("D:\\JarsCrawler\\url.txt");
+            fileReader = new FileReader(CrawlerConstant.FILE_PATH);
             bufferedReader = new BufferedReader(fileReader);
 
             String line = null;
             while((line = bufferedReader.readLine()) != null) {
-                addUrl(line, "初始化");
+                addUrl(line, LogMessageEnum.INIT.getDescription());
             }
 
         } catch (FileNotFoundException e) {
@@ -88,7 +91,7 @@ public class StartCrawler {
      * @param realUrl
      */
     public static void addUrl(String realUrl, String info) {
-        if (realUrl == null || "".equals(realUrl)) {
+        if (StringUtil.isEmpty(realUrl)) {
             return;
         }
 
@@ -102,8 +105,7 @@ public class StartCrawler {
      * 解析网页请求
      */
     public static void parseUrl() {
-        ExecutorService executorService = Executors.newFixedThreadPool(5);
-
+        ExecutorService executorService = Executors.newFixedThreadPool(CrawlerConstant.fixedThreadPoolCount);
         Runnable runnable = new CrawlerRunnable();
 
         boolean exeFlag = true;
@@ -111,8 +113,7 @@ public class StartCrawler {
             if (JVMCache.waitForCrawlerUrls.size() > 0) {
                 executorService.execute(runnable);
             } else {
-                // 活动线程数量为0
-                if (((ThreadPoolExecutor) executorService).getActiveCount() == 0) {
+                if (((ThreadPoolExecutor) executorService).getActiveCount() == 0) { // 活动线程数量为0
                     executorService.shutdown(); // 结束所有线程
                     exeFlag = false;
                     logger.info("爬虫任务已经完成");
@@ -132,28 +133,25 @@ public class StartCrawler {
      * @param webPageContent
      */
     public static void parseWebPage(String webPageContent, String prefixUrl) {
-        if (webPageContent == null || "".equals(webPageContent)) {
-            return;
-        }
-
         Document doc = Jsoup.parse(webPageContent);
-        Elements links = doc.select("a"); // 获取所有超链接元素
+        Elements links = doc.select(CrawlerConstant.A_TAG); // 获取所有超链接元素
+
         for (Element link : links) {
-            String url = link.attr("href");
+            String url = link.attr(CrawlerConstant.HREF_ATTR);
             String realUrl = prefixUrl + url;
 
-            if (JVMCache.excludeUrl.equals(url)) {
+            if (CrawlerConstant.EXCLUDE_URL.equals(url)) {
                 continue;
             }
 
-            if (url.endsWith(".jar")) { // 需要采集的URL
+            if (url.endsWith(CrawlerConstant.POINT_JAR)) { // 需要采集的URL
                 JVMCache.totalJar++;
                 logger.info("发现第" + JVMCache.totalJar + "目标：" + realUrl);
 
                 addJar(url, realUrl);
-            } else if (url.matches(JVMCache.regex)) { // 需要继续爬取的URL
+            } else if (url.matches(CrawlerConstant.REGEX)) { // 需要继续爬取的URL
                 logger.info("爬虫url队列新增url:" + realUrl);
-                addUrl(realUrl, "解析网页");
+                addUrl(realUrl, LogMessageEnum.PARSE_PAGE.getDescription());
             }
         }
     }

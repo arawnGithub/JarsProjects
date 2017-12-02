@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
+ * 标签实体
  * Created by ArawN on 2017/10/29.
  */
 @Getter

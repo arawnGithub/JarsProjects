@@ -1,6 +1,7 @@
 package com.arawn.lib.constant;
 
 /**
+ * 数据库属性常量
  * Created by ArawN on 2017/10/29.
  */
 public class DBConstant {

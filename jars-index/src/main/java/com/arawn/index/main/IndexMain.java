@@ -19,11 +19,12 @@ import java.nio.file.Paths;
 import java.util.List;
 
 /**
+ * 索引起始类
  * Created by ArawN on 2017/9/23.
  */
-public class JarsIndex {
+public class IndexMain {
 
-    private static Logger logger = Logger.getLogger(JarsIndex.class);
+    private static Logger logger = Logger.getLogger(IndexMain.class);
 
     /**
      * jar包Dao
@@ -46,8 +47,11 @@ public class JarsIndex {
 
             for (Jar jar : jarList) {
                 Document document = new Document();
-                document.add(new StringField("jarId", jar.getJarId(), Field.Store.YES));
-                document.add(new TextField("name", jar.getName().replaceAll("-", " "), Field.Store.YES));
+                document.add(new StringField(IndexConstant.JAR_ID,
+                        jar.getJarId(), Field.Store.YES));
+
+                document.add(new TextField(IndexConstant.NAME,
+                        jar.getName().replaceAll(IndexConstant.HYPHEN, IndexConstant.BLANK), Field.Store.YES));
 
                 indexWriter.addDocument(document);
                 logger.info("添加document:" + document);

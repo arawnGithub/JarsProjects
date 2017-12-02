@@ -29,6 +29,7 @@ import java.util.Iterator;
 import java.util.Map;
 
 /**
+ * HttpClient帮助类
  * Created by ArawN on 2017/10/31.
  */
 public class HttpClientHelper {
@@ -137,8 +138,7 @@ public class HttpClientHelper {
 
             // 判断响应状态
             if (response.getStatusLine().getStatusCode() >= 300) {
-                throw new Exception(
-                        "HTTP Request is not success, Response code is " + response.getStatusLine().getStatusCode());
+                throw new Exception("HTTP Request is not success, Response code is " + response.getStatusLine().getStatusCode());
             }
 
             if (HttpStatus.SC_OK == response.getStatusLine().getStatusCode()) {
@@ -193,8 +193,7 @@ public class HttpClientHelper {
 
             // 判断响应状态
             if (response.getStatusLine().getStatusCode() >= 300) {
-                throw new Exception(
-                        "HTTP Request is not success, Response code is " + response.getStatusLine().getStatusCode());
+                throw new Exception("HTTP Request is not success, Response code is " + response.getStatusLine().getStatusCode());
             }
 
             if (HttpStatus.SC_OK == response.getStatusLine().getStatusCode()) {
@@ -257,7 +256,7 @@ public class HttpClientHelper {
      * @param params  参数(格式:key1=value1&key2=value2)
      */
     public static String sendHttpPost(String httpUrl, String params) {
-        HttpPost httpPost = new HttpPost(httpUrl);// 创建httpPost
+        HttpPost httpPost = new HttpPost(httpUrl); // 创建httpPost
         try {
             // 设置参数
             if (params != null && params.trim().length() > 0) {
@@ -277,8 +276,8 @@ public class HttpClientHelper {
      * @param maps 参数
      */
     public static String sendHttpPost(String httpUrl, Map<String, String> maps) {
-        String parem = convertStringParameter(maps);
-        return sendHttpPost(httpUrl, parem);
+        String param = convertStringParameter(maps);
+        return sendHttpPost(httpUrl, param);
     }
 
     /**
@@ -288,7 +287,7 @@ public class HttpClientHelper {
      * @param paramsJson 参数(格式 json)
      */
     public static String sendHttpPostJson(String httpUrl, String paramsJson) {
-        HttpPost httpPost = new HttpPost(httpUrl);// 创建httpPost
+        HttpPost httpPost = new HttpPost(httpUrl); // 创建httpPost
         try {
             // 设置参数
             if (paramsJson != null && paramsJson.trim().length() > 0) {
@@ -309,7 +308,7 @@ public class HttpClientHelper {
      * @param paramsXml 参数(格式 Xml)
      */
     public static String sendHttpPostXml(String httpUrl, String paramsXml) {
-        HttpPost httpPost = new HttpPost(httpUrl);// 创建httpPost
+        HttpPost httpPost = new HttpPost(httpUrl); // 创建httpPost
         try {
             // 设置参数
             if (paramsXml != null && paramsXml.trim().length() > 0) {
@@ -329,9 +328,8 @@ public class HttpClientHelper {
      * @param parameterMap 需要转化的键值对集合
      * @return 字符串
      */
-    @SuppressWarnings("rawtypes")
     private static String convertStringParameter(Map<String, String> parameterMap) {
-        StringBuffer parameterBuffer = new StringBuffer();
+        StringBuilder parameterBuffer = new StringBuilder();
         if (parameterMap != null) {
             Iterator<String> iterator = parameterMap.keySet().iterator();
             String key = null;
