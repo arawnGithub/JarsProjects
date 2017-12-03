@@ -196,8 +196,7 @@
                 <div>
                     <ul id="jars" class="resultJars">
                         <c:forEach var="tag" items="${tagList}">
-                            <li><a href='${pageContext.request.contextPath}/jar/query.do?q=${tag.name}' target='_blank'
-                                   title='${tag.name}.jar下载'>${tag.name}.jar</a></li>
+                            <li><a href='${pageContext.request.contextPath}/jar/query.do?q=${tag.name}' target='_blank' title='${tag.name}.jar下载'>${tag.name}.jar</a></li>
                         </c:forEach>
                     </ul>
                 </div>
