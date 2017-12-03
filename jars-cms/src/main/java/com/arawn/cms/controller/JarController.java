@@ -46,7 +46,7 @@ public class JarController {
      * @throws Exception
      */
     @RequestMapping("/query")
-    public ModelAndView query(@RequestParam("q") String q, @RequestParam("page") Integer page, HttpServletRequest request) throws Exception {
+    public ModelAndView query(@RequestParam("q") String q, @RequestParam(value = "page", required = false) Integer page, HttpServletRequest request) throws Exception {
         logger.info("JarController query start ==>" + FastJsonUtil.toJSONString(q));
 
         if (StringUtil.isEmpty(q)) {

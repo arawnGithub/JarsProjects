@@ -34,4 +34,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         WHERE jarId = #{jarId}
     </update>
 
+    <select id="listByMap" resultMap="JarResult">
+        SELECT * FROM t_jar
+        ORDER BY update_time DESC
+        <if test="start != null and pageSize != null">
+            limit #{start},#{pageSize}
+        </if>
+    </select>
+
+    <select id="countByMap" resultType="java.lang.Long">
+        SELECT COUNT(*) FROM t_jar
+    </select>
+
 </mapper> 

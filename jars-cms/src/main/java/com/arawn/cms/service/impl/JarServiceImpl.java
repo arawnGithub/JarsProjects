@@ -6,6 +6,8 @@ import com.arawn.cms.service.JarService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Jar包Service实现类
@@ -25,5 +27,15 @@ public class JarServiceImpl implements JarService {
     @Override
     public int updateByJarId(Jar jar) {
         return jarDao.updateByJarId(jar);
+    }
+
+    @Override
+    public List<Jar> listByMap(Map<String, Object> map) {
+        return jarDao.listByMap(map);
+    }
+
+    @Override
+    public Long countByMap(Map<String, Object> map) {
+        return jarDao.countByMap(map);
     }
 }

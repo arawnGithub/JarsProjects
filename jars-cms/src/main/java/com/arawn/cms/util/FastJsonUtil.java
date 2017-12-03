@@ -2,12 +2,9 @@ package com.arawn.cms.util;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.alibaba.fastjson.TypeReference;
-import com.alibaba.fastjson.serializer.JSONLibDataFormatSerializer;
 import com.alibaba.fastjson.serializer.SerializeConfig;
-import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.alibaba.fastjson.serializer.SimpleDateFormatSerializer;
 
-import java.io.*;
 import java.util.List;
 import java.util.Map;
 
@@ -17,22 +14,12 @@ import java.util.Map;
  */
 public class FastJsonUtil {
 
-	private static final SerializeConfig config;
+	private static final SerializeConfig CONFIG;
 
 	static {
-		config = new SerializeConfig();
-		config.put(java.util.Date.class, new JSONLibDataFormatSerializer()); // 使用和json-lib兼容的日期输出格式
-		config.put(java.sql.Date.class, new JSONLibDataFormatSerializer()); // 使用和json-lib兼容的日期输出格式
+		CONFIG = new SerializeConfig();
+		CONFIG.put(java.util.Date.class, new SimpleDateFormatSerializer("yyyy-MM-dd HH:mm:ss"));
 	}
-
-	private static final SerializerFeature[] features = {
-	        SerializerFeature.WriteMapNullValue, // 输出空置字段
-			SerializerFeature.WriteNullListAsEmpty, // list字段如果为null，输出为[]，而不是null
-			SerializerFeature.WriteNullNumberAsZero, // 数值字段如果为null，输出为0，而不是null
-			SerializerFeature.WriteNullBooleanAsFalse, // Boolean字段如果为null，输出为false，而不是null
-			SerializerFeature.WriteNullStringAsEmpty, // 字符类型字段如果为null，输出为""，而不是null
-			SerializerFeature.PrettyFormat // 是否需要格式化输出Json数据
-	};
 
 	/**
 	 * Author:Jack Time:2017年9月2日下午4:24:14
@@ -41,17 +28,7 @@ public class FastJsonUtil {
 	 * @return Return:String Description:将对象转成成Json对象
 	 */
 	public static String toJSONString(Object object) {
-		return JSON.toJSONString(object, config, features);
-	}
-
-	/**
-	 * Author:Jack Time:2017年9月2日下午4:27:25
-	 *
-	 * @param object
-	 * @return Return:String Description:使用和json-lib兼容的日期输出格式
-	 */
-	public static String toJSONNoFeatures(Object object) {
-		return JSON.toJSONString(object, config);
+		return JSON.toJSONString(object, CONFIG);
 	}
 
 	/**
@@ -118,6 +95,7 @@ public class FastJsonUtil {
 		JSONObject objectJson = (JSONObject) JSON.parse(jsonStr);
 		return objectJson;
 	}
+
 	/**
 	 * json字符串转化为map
 	 *
@@ -138,99 +116,6 @@ public class FastJsonUtil {
 	public static String collectToString(Map<?, ?> map) {
 		String jsonStr = JSONObject.toJSONString(map);
 		return jsonStr;
-	}
-
-	/**
-	 * Author:Jack Time:2017年9月2日下午4:19:00
-	 *
-	 * @param t
-	 * @param file
-	 * @throws IOException
-	 * Return:void Description:将对象的Json数据写入文件。
-	 */
-	public static <T> void writeJsonToFile(T t, File file) throws IOException {
-		String jsonStr = JSONObject.toJSONString(t, SerializerFeature.PrettyFormat);
-		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file)));
-		bw.write(jsonStr);
-		bw.close();
-	}
-
-	/**
-	 * Author:Jack Time:2017年9月2日下午4:19:12
-	 *
-	 * @param t
-	 * @param filename
-	 * @throws IOException
-	 * Return:void Description:将对象的Json数据写入文件。
-	 */
-	public static <T> void writeJsonToFile(T t, String filename) throws IOException {
-		writeJsonToFile(t, new File(filename));
-	}
-
-	/**
-	 * Author:Jack Time:2017年9月2日下午4:22:07
-	 *
-	 * @param cls
-	 * @param file
-	 * @return
-	 * @throws IOException
-	 * Return:T Description:将文件中的Json数据转换成Object对象
-	 */
-	public static <T> T readJsonFromFile(Class<T> cls, File file) throws IOException {
-		StringBuilder strBuilder = new StringBuilder();
-		BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
-		String line = null;
-		while ((line = br.readLine()) != null) {
-			strBuilder.append(line);
-		}
-		br.close();
-		return JSONObject.parseObject(strBuilder.toString(), cls);
-	}
-
-	/**
-	 * Author:Jack Time:2017年9月2日下午4:22:30
-	 *
-	 * @param cls
-	 * @param filename
-	 * @return
-	 * @throws IOException
-	 * Return:T Description:将文件中的Json数据转换成Object对象
-	 */
-	public static <T> T readJsonFromFile(Class<T> cls, String filename) throws IOException {
-		return readJsonFromFile(cls, new File(filename));
-	}
-
-	/**
-	 * Author:Jack Time:2017年9月2日下午4:23:06
-	 *
-	 * @param typeReference
-	 * @param file
-	 * @return
-	 * @throws IOException
-	 * Return:T Description:从文件中读取出Json对象
-	 */
-	public static <T> T readJsonFromFile(TypeReference<T> typeReference, File file) throws IOException {
-		StringBuilder strBuilder = new StringBuilder();
-		BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
-		String line = null;
-		while ((line = br.readLine()) != null) {
-			strBuilder.append(line);
-		}
-		br.close();
-		return JSONObject.parseObject(strBuilder.toString(), typeReference);
-	}
-
-	/**
-	 * Author:Jack Time:2017年9月2日下午4:23:11
-	 *
-	 * @param typeReference
-	 * @param filename
-	 * @return
-	 * @throws IOException
-	 * Return:T Description:从文件中读取出Json对象
-	 */
-	public static <T> T readJsonFromFile(TypeReference<T> typeReference, String filename) throws IOException {
-		return readJsonFromFile(typeReference, new File(filename));
 	}
 
 }

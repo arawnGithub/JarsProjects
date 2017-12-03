@@ -1,8 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Jar包CMS系统后台登录页面</title>
+    <title>Jar包下载网后台登录页面</title>
     <script src="${pageContext.request.contextPath}/static/bootstrap3/js/jquery-1.11.2.min.js"></script>
     <STYLE>
         body {
@@ -197,7 +198,7 @@
         </P>
         <DIV style="height: 50px; line-height: 50px; margin-top: 30px; border-top-color: rgb(231, 231, 231); border-top-width: 1px; border-top-style: solid;">
             <P style="margin: 0px 35px 20px 45px;">
-                <SPAN style="float: left;">Jar包CMS系统</SPAN>
+                <SPAN style="float: left;">Jar包下载网</SPAN>
                 <span><font color="red" id="error">${errorMsg }</font></span>
                 <SPAN style="float: right;">
                     <input type="submit" style="background: rgb(0, 142, 173); padding: 7px 10px; border-radius: 4px; border: 1px solid rgb(26, 117, 152); border-image: none; color: rgb(255, 255, 255); font-weight: bold;" value="登录"/>

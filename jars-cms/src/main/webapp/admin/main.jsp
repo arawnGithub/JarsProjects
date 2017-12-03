@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Jar包CMS系统后台主页面</title>
+    <title>Jar包下载网后台主页面</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/jquery-easyui-1.3.3/themes/default/easyui.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/jquery-easyui-1.3.3/themes/icon.css">
     <script type="text/javascript" src="${pageContext.request.contextPath}/static/jquery-easyui-1.3.3/jquery.min.js"></script>
@@ -40,8 +40,8 @@
 
 <div region="west" style="width: 200px" title="导航菜单" split="true">
     <div style="padding-top: 10px;padding-left: 10px;">
-        <a href="javascript:openTab('Jar包信息管理', 'jarManage.jsp', 'icon-jgl')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-jgl'" style="width: 150px;">Jar包信息管理</a>
-        <a href="javascript:openTab('Tag标签信息管理', 'tagManage.jsp', 'icon-jgl')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-jgl'" style="width: 150px;">Tag标签信息管理</a>
+        <a href="javascript:openTab('Jar包信息管理', 'jar_manage.jsp', 'icon-jgl')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-jgl'" style="width: 150px;">Jar包信息管理</a>
+        <a href="javascript:openTab('Tag标签信息管理', 'tag_manage.jsp', 'icon-jgl')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-jgl'" style="width: 150px;">Tag标签信息管理</a>
         <a href="javascript:openPasswordModifyDialog()" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-modifyPassword'" style="width: 150px;">修改密码</a>
         <a href="javascript:logout()" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-exit'" style="width: 150px;">安全退出</a>
     </div>
