@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.arawn.cms.dao.JarDao">
+    <resultMap id="JarResult" type="Jar">
+        <result property="id" column="id"/>
+        <result property="jarId" column="jar_id"/>
+        <result property="name" column="name"/>
+        <result property="path" column="path"/>
+        <result property="type" column="type"/>
+        <result property="click" column="click"/>
+        <result property="downHit" column="down_hit"/>
+        <result property="indexState" column="index_state"/>
+        <result property="tagState" column="tag_state"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
+
+    <select id="queryByJarId" resultMap="JarResult">
+        SELECT * FROM t_jar WHERE jar_id = #{jarId}
+    </select>
+
+    <update id="updateByJarId">
+        UPDATE t_jar
+        <set>
+            <if test="click != null">
+                click = #{click},
+            </if>
+            <if test="downHit != null">
+                downHit = #{downHit},
+            </if>
+        </set>
+        WHERE jarId = #{jarId}
+    </update>
+
+</mapper> 

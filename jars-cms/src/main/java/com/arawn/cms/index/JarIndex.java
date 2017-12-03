@@ -29,7 +29,7 @@ import java.util.List;
  */
 public class JarIndex {
 
-    private Directory dir;
+    private Directory directory;
 
     /**
      * 查询Jar包信息
@@ -39,8 +39,8 @@ public class JarIndex {
      * @throws Exception
      */
     public List<Jar> searchJar(String q, int num) throws Exception {
-        dir = FSDirectory.open(Paths.get(IndexConstant.FILE_PATH));
-        IndexReader reader = DirectoryReader.open(dir);
+        directory = FSDirectory.open(Paths.get(IndexConstant.FILE_PATH));
+        IndexReader reader = DirectoryReader.open(directory);
         IndexSearcher searcher = new IndexSearcher(reader);
 
         Analyzer analyzer = new StandardAnalyzer();
@@ -67,6 +67,8 @@ public class JarIndex {
             if (StringUtil.isNotEmpty(name)) {
                 TokenStream tokenStream = analyzer.tokenStream(IndexConstant.NAME, new StringReader(name));
                 String hasTagName = highlighter.getBestFragment(tokenStream, name);
+
+                // 如果高亮的jar名称为空，则设置原先的名称
                 if (StringUtil.isEmpty(hasTagName)) {
                     jar.setHasTagName(name);
                 } else {

@@ -88,7 +88,7 @@
                             <c:otherwise>
                                 <c:forEach var="jar" items="${jarList}">
                                     <li style="margin-bottom: 20px">
-                                        <span class="title"><a href="${pageContext.request.contextPath}/jar/${jar.jarId}.html" target="_blank" title="${jar.name}.jar下载">${jar.hasTagName}</a></span>
+                                        <span class="title"><a href="${pageContext.request.contextPath}/jar/view/${jar.jarId}.html" target="_blank" title="${jar.name}.jar下载">${jar.hasTagName}</a></span>
                                     </li>
                                 </c:forEach>
                             </c:otherwise>

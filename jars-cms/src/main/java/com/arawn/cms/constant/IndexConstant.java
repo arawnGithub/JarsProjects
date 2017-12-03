@@ -30,4 +30,14 @@ public class IndexConstant {
      * 后缀标签
      */
     public static final String SUFFIX_TAG = "</font></b>";
+
+    /**
+     * 中横线
+     */
+    public static final String HYPHEN = "-";
+
+    /**
+     * 空格
+     */
+    public static final String BLANK = " ";
 }

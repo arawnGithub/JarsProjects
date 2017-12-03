@@ -20,6 +20,11 @@ public class IndexController {
     @Resource
     private TagService tagService;
 
+    /**
+     * 请求首页
+     * @return
+     * @throws Exception
+     */
     @RequestMapping("/index")
     public ModelAndView index() throws Exception {
         ModelAndView mav = new ModelAndView();
