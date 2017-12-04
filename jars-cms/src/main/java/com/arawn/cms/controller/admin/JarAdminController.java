@@ -53,4 +53,24 @@ public class JarAdminController {
         return FastJsonUtil.toJSONString(result);
     }
 
+    /**
+     * 删除Jar包信息
+     * @param jarIds
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("/delete")
+    @ResponseBody
+    public String delete(@RequestParam("jarIds") String jarIds) throws Exception {
+        String[] jarIdArr = jarIds.split(",");
+
+        for (String jarId : jarIdArr) {
+            jarService.deleteByJarId(jarId);
+        }
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("success", true);
+        return FastJsonUtil.collectToString(map);
+    }
+
 }

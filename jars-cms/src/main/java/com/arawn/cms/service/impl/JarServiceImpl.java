@@ -38,4 +38,9 @@ public class JarServiceImpl implements JarService {
     public Long countByMap(Map<String, Object> map) {
         return jarDao.countByMap(map);
     }
+
+    @Override
+    public int deleteByJarId(String jarId) {
+        return jarDao.deleteByJarId(jarId);
+    }
 }

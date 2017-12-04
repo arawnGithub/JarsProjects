@@ -14,6 +14,33 @@
                 "sName":$("#s_name").val()
             });
         }
+
+        function deleteJar() {
+            var selectionRows = $("#dg").datagrid("getSelections");
+            if (selectionRows.length == 0) {
+                $.messager.alert("系统提示", "请选择要删除的数据");
+            }
+
+            var jarIdArr = [];
+            for (var i = 0; i < selectionRows.length; i++) {
+                jarIdArr.push(selectionRows[i].jarId);
+            }
+
+            var jarIds = jarIdArr.join(",");
+            $.messager.confirm("系统提示", "您确定要删除这<font color='red'>" + selectionRows.length + "</font>条数据吗", function(r) {
+                if (r) {
+                    $.post("${pageContext.request.contextPath}/admin/jar/delete.do", {"jarIds":jarIds}, function (result) {
+                        if (result.success) {
+                            $.messager.alert("系统提示", "数据删除成功");
+                            $("#dg").datagrid("reload");
+                        } else {
+                            $.messager.alert("系统提示", "数据删除失败");
+                        }
+
+                    }, "json");
+                }
+            });
+        }
     </script>
 </head>
 <body style="margin: 1px">
@@ -33,9 +60,8 @@
 
 <div id="tb">
     <div>
-
+        <a href="javascript:deleteJar()" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>
     </div>
-
     <div>
         &nbsp;jar包名称：&nbsp;<input type="text" id="s_name" size="20" onkeydown="if(event.keyCode == 13) searchJar()"/>
         <a href="javascript:searchJar()" class="easyui-linkbutton" iconCls="icon-search" plain="true">搜索</a>
