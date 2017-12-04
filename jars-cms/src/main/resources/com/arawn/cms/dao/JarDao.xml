@@ -21,14 +21,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         SELECT * FROM t_jar WHERE jar_id = #{jarId}
     </select>
 
+    <insert id="insert">
+        INSERT INTO t_jar VALUES(NULL, #{jarId}, #{name}, #{path}, #{type}, 0, 0, 0, 0, NOW(), NOW())
+    </insert>
+
     <update id="updateByJarId">
         UPDATE t_jar
         <set>
+            <if test="name != null and name != '' ">
+                name = #{name},
+            </if>
+            <if test="path != null and path != '' ">
+                path = #{path},
+            </if>
             <if test="click != null">
                 click = #{click},
             </if>
             <if test="downHit != null">
-                downHit = #{downHit},
+                down_hit = #{downHit},
             </if>
         </set>
         WHERE jarId = #{jarId}

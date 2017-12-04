@@ -19,6 +19,13 @@ public interface JarService {
     Jar queryByJarId(String jarId);
 
     /**
+     * 添加Jar包信息
+     * @param jar
+     * @return
+     */
+    int insert(Jar jar);
+
+    /**
      * 根据jarId修改Jar包信息
      * @param jar
      * @return

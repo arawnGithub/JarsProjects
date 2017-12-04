@@ -25,6 +25,11 @@ public class JarServiceImpl implements JarService {
     }
 
     @Override
+    public int insert(Jar jar) {
+        return jarDao.insert(jar);
+    }
+
+    @Override
     public int updateByJarId(Jar jar) {
         return jarDao.updateByJarId(jar);
     }

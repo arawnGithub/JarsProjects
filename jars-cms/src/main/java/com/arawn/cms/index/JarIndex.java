@@ -7,8 +7,10 @@ import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.TokenStream;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
-import org.apache.lucene.index.DirectoryReader;
-import org.apache.lucene.index.IndexReader;
+import org.apache.lucene.document.Field;
+import org.apache.lucene.document.StringField;
+import org.apache.lucene.document.TextField;
+import org.apache.lucene.index.*;
 import org.apache.lucene.queryparser.classic.QueryParser;
 import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.search.Query;
@@ -30,6 +32,70 @@ import java.util.List;
 public class JarIndex {
 
     private Directory directory;
+
+    /**
+     * 获取IndexWriter实例
+     * @return
+     * @throws Exception
+     */
+    private IndexWriter getWriter() throws Exception {
+        directory = FSDirectory.open(Paths.get(IndexConstant.FILE_PATH));
+
+        Analyzer analyzer = new StandardAnalyzer();
+        IndexWriterConfig config = new IndexWriterConfig(analyzer);
+        IndexWriter writer = new IndexWriter(directory, config);
+        return writer;
+    }
+
+    /**
+     * 添加jar包索引
+     * @param jar
+     * @throws Exception
+     */
+    public void addIndex(Jar jar) throws Exception {
+        IndexWriter writer = getWriter();
+
+        Document document = new Document();
+        document.add(new StringField(IndexConstant.JAR_ID,
+                jar.getJarId(), Field.Store.YES));
+        document.add(new TextField(IndexConstant.NAME,
+                jar.getName().replaceAll(IndexConstant.HYPHEN, IndexConstant.BLANK), Field.Store.YES));
+
+        writer.addDocument(document);
+        writer.close();
+    }
+
+    /**
+     * 更新jar包索引
+     * @param jar
+     * @throws Exception
+     */
+    public void updateIndex(Jar jar) throws Exception {
+        IndexWriter writer = getWriter();
+
+        Document document = new Document();
+        document.add(new StringField(IndexConstant.JAR_ID,
+                jar.getJarId(), Field.Store.YES));
+        document.add(new TextField(IndexConstant.NAME,
+                jar.getName().replaceAll(IndexConstant.HYPHEN, IndexConstant.BLANK), Field.Store.YES));
+
+        writer.updateDocument(new Term(IndexConstant.JAR_ID, jar.getJarId()), document);
+        writer.close();
+    }
+
+    /**
+     * 删除指定jar包的索引
+     * @param jarId
+     * @throws Exception
+     */
+    public void deleteIndex(String jarId) throws Exception {
+        IndexWriter writer = getWriter();
+
+        writer.deleteDocuments(new Term(IndexConstant.JAR_ID, jarId));
+        writer.forceMergeDeletes(); // 强制删除
+        writer.commit();
+        writer.close();
+    }
 
     /**
      * 查询Jar包信息

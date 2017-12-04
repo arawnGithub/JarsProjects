@@ -3,6 +3,7 @@ package com.arawn.cms.controller.admin;
 import com.arawn.cms.entity.EasyUIResult;
 import com.arawn.cms.entity.Jar;
 import com.arawn.cms.entity.PageBean;
+import com.arawn.cms.index.JarIndex;
 import com.arawn.cms.service.JarService;
 import com.arawn.cms.util.FastJsonUtil;
 import com.arawn.cms.util.StringUtil;
@@ -26,6 +27,9 @@ public class JarAdminController {
 
     @Resource
     private JarService jarService;
+
+    @Resource
+    private JarIndex jarIndex;
 
     /**
      * 分页查询Jar包信息
@@ -66,10 +70,47 @@ public class JarAdminController {
 
         for (String jarId : jarIdArr) {
             jarService.deleteByJarId(jarId);
+
+            // 删除索引
+            jarIndex.deleteIndex(jarId);
         }
 
         Map<String, Object> map = new HashMap<>();
         map.put("success", true);
+        return FastJsonUtil.collectToString(map);
+    }
+
+    /**
+     * 保存Jar包信息
+     * @param jar
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("/save")
+    @ResponseBody
+    public String save(Jar jar) throws Exception {
+        // 操作记录条数
+        int resultTotal = 0;
+
+        if (jar.getJarId() == null) {
+            jar.setJarId(StringUtil.genJarId());
+            resultTotal = jarService.insert(jar);
+
+            // 添加索引
+            jarIndex.addIndex(jar);
+        } else {
+            resultTotal = jarService.updateByJarId(jar);
+
+            // 更新索引
+            jarIndex.updateIndex(jar);
+        }
+
+        Map<String, Object> map = new HashMap<>();
+        if (resultTotal > 0) {
+            map.put("success", true);
+        } else {
+            map.put("success", false);
+        }
         return FastJsonUtil.collectToString(map);
     }
 

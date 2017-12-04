@@ -1,5 +1,7 @@
 package com.arawn.cms.util;
 
+import java.util.UUID;
+
 /**
  * 字符串工具类
  * Created by ArawN on 2017/10/29.
@@ -40,6 +42,14 @@ public class StringUtil {
             return "%" + str + "%";
         }
         return null;
+    }
+
+    /**
+     * 生成JarId
+     * @return
+     */
+    public static String genJarId() {
+        return UUID.randomUUID().toString().replaceAll("-", "").toUpperCase();
     }
 
 }
