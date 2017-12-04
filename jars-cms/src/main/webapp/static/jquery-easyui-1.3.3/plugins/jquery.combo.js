@@ -151,7 +151,7 @@ var _26=$.data(_25,"combo").options;
 var _27=$.data(_25,"combo").combo;
 var _28=$.data(_25,"combo").panel;
 if($.fn.window){
-_28.panel("panel").css("z-main",$.fn.window.defaults.zIndex++);
+_28.panel("panel").css("z-index",$.fn.window.defaults.zIndex++);
 }
 _28.panel("move",{left:_27.offset().left,top:_29()});
 if(_28.panel("options").closed){

@@ -21,4 +21,9 @@ public class ManagerServiceImpl implements ManagerService {
     public Manager queryByUsername(String username) {
         return managerDao.queryByUsername(username);
     }
+
+    @Override
+    public int updateById(Manager manager) {
+        return managerDao.updateById(manager);
+    }
 }

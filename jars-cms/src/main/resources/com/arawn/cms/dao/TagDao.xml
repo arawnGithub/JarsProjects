@@ -12,4 +12,43 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         SELECT * FROM t_tag ORDER BY RAND() LIMIT #{n}
     </select>
 
+    <select id="listByMap" resultMap="TagResult">
+        SELECT * FROM t_tag
+        <where>
+            <if test="name != null and name != '' ">
+                AND name like #{name}
+            </if>
+        </where>
+        <if test="start != null and pageSize != null">
+            LIMIT #{start},#{pageSize}
+        </if>
+    </select>
+
+    <select id="countByMap" resultType="java.lang.Long">
+        SELECT COUNT(*) FROM t_tag
+        <where>
+            <if test="name != null and name != '' ">
+                AND name LIKE #{name}
+            </if>
+        </where>
+    </select>
+
+    <insert id="insert">
+        INSERT INTO t_tag VALUES(NULL,#{name})
+    </insert>
+
+    <update id="updateById">
+        UPDATE t_tag
+        <set>
+            <if test="name != null and name != '' ">
+                name = #{name},
+            </if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteById">
+        DELETE FROM t_tag WHERE id = #{id}
+    </delete>
+
 </mapper> 

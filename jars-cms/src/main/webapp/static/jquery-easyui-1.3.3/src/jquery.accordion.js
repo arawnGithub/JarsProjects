@@ -64,7 +64,7 @@
 	}
 	
 	/**
-	 * get panel main, start with 0
+	 * get panel index, start with 0
 	 */
 	function getPanelIndex(container, panel){
 		var panels = $.data(container, 'accordion').panels;

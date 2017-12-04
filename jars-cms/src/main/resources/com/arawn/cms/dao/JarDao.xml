@@ -48,7 +48,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         SELECT * FROM t_jar
         <where>
             <if test="name != null and name != '' ">
-                and name LIKE #{name}
+                AND name LIKE #{name}
             </if>
         </where>
         ORDER BY update_time DESC
@@ -61,7 +61,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         SELECT COUNT(*) FROM t_jar
         <where>
             <if test="name != null and name != '' ">
-                and name LIKE #{name}
+                AND name LIKE #{name}
             </if>
         </where>
     </select>

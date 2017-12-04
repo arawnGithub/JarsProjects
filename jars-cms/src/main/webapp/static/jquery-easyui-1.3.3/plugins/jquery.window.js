@@ -104,7 +104,7 @@ _19.mask.css({display:"block",zIndex:$.fn.window.defaults.zIndex++});
 if(_19.shadow){
 _19.shadow.css({display:"block",zIndex:$.fn.window.defaults.zIndex++,left:_19.options.left,top:_19.options.top,width:_19.window._outerWidth(),height:_19.window._outerHeight()});
 }
-_19.window.css("z-main",$.fn.window.defaults.zIndex++);
+_19.window.css("z-index",$.fn.window.defaults.zIndex++);
 _19.options.onOpen.call(_18);
 },onResize:function(_1a,_1b){
 var _1c=$(this).panel("options");
@@ -164,12 +164,12 @@ function _1e(_1f){
 var _20=$.data(_1f,"window");
 _20.window.draggable({handle:">div.panel-header>div.panel-title",disabled:_20.options.draggable==false,onStartDrag:function(e){
 if(_20.mask){
-_20.mask.css("z-main",$.fn.window.defaults.zIndex++);
+_20.mask.css("z-index",$.fn.window.defaults.zIndex++);
 }
 if(_20.shadow){
-_20.shadow.css("z-main",$.fn.window.defaults.zIndex++);
+_20.shadow.css("z-index",$.fn.window.defaults.zIndex++);
 }
-_20.window.css("z-main",$.fn.window.defaults.zIndex++);
+_20.window.css("z-index",$.fn.window.defaults.zIndex++);
 if(!_20.proxy){
 _20.proxy=$("<div class=\"window-proxy\"></div>").insertAfter(_20.window);
 }

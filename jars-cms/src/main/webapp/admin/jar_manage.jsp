@@ -111,9 +111,9 @@
        fit="true" toolbar="#tb">
     <thead>
         <th field="cb" checkbox="true" align="center"></th>
-        <th field="jarId" width="100">jar包ID</th>
-        <th field="name" width="100">jar包名称</th>
-        <th field="type" width="50" align="center">jar包类型</th>
+        <th field="jarId" width="100">Jar包ID</th>
+        <th field="name" width="100">Jar包名称</th>
+        <th field="type" width="50" align="center">Jar包类型</th>
         <th field="createTime" width="50" align="center">创建时间</th>
         <th field="updateTime" width="50" align="center">更新时间</th>
     </thead>
@@ -125,7 +125,7 @@
         <a href="javascript:deleteJar()" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>
     </div>
     <div>
-        &nbsp;jar包名称：&nbsp;<input type="text" id="s_name" size="20" onkeydown="if(event.keyCode == 13) searchJar()"/>
+        &nbsp;Jar包名称：&nbsp;<input type="text" id="s_name" size="20" onkeydown="if(event.keyCode == 13) searchJar()"/>
         <a href="javascript:searchJar()" class="easyui-linkbutton" iconCls="icon-search" plain="true">搜索</a>
     </div>
 </div>
@@ -134,19 +134,19 @@
     <form id="fm" method="post">
         <table cellspacing="8px">
             <tr>
-                <td>jar包名称：</td>
+                <td>Jar包名称：</td>
                 <td>
                     <input type="text" id="name" name="name" class="easyui-validatebox" required="true" style="width: 200px"/>
                 </td>
             </tr>
             <tr>
-                <td>jar包资源路径：</td>
+                <td>Jar包资源路径：</td>
                 <td>
                     <input type="text" id="path" name="path" class="easyui-validatebox" validtype="url" required="true" style="width: 350px"/>
                 </td>
             </tr>
             <tr>
-                <td>jar包类型：</td>
+                <td>Jar包类型：</td>
                 <td>
                     <select id="type" name="type" class="easyui-validatebox" required="true" style="width: 200px">
                         <option value="">请选择...</option>
@@ -159,7 +159,6 @@
         </table>
     </form>
 </div>
-
 <div id="dlg-buttons">
     <a href="javascript:saveJar()" class="easyui-linkbutton" iconCls="icon-ok">保存</a>
     <a href="javascript:closeJarDialog()" class="easyui-linkbutton" iconCls="icon-cancel">关闭</a>

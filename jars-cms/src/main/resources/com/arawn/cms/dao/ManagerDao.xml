@@ -9,8 +9,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="password" column="password"/>
     </resultMap>
 
-    <select id="queryByUsername" parameterType="string" resultMap="managerResult">
+    <select id="queryByUsername" resultMap="managerResult">
         SELECT * FROM t_manager WHERE username = #{username}
     </select>
+
+    <update id="updateById">
+        UPDATE t_manager
+        <set>
+            <if test="password != null and password != '' ">
+                password = #{password},
+            </if>
+        </set>
+        WHERE username = #{username}
+    </update>
 
 </mapper> 

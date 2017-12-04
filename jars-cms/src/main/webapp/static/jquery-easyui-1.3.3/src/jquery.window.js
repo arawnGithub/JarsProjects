@@ -117,7 +117,7 @@
 						height: state.window._outerHeight()
 					});
 				}
-				state.window.css('z-main', $.fn.window.defaults.zIndex++);
+				state.window.css('z-index', $.fn.window.defaults.zIndex++);
 				
 				state.options.onOpen.call(target);
 			},
@@ -199,9 +199,9 @@
 			handle: '>div.panel-header>div.panel-title',
 			disabled: state.options.draggable == false,
 			onStartDrag: function(e){
-				if (state.mask) state.mask.css('z-main', $.fn.window.defaults.zIndex++);
-				if (state.shadow) state.shadow.css('z-main', $.fn.window.defaults.zIndex++);
-				state.window.css('z-main', $.fn.window.defaults.zIndex++);
+				if (state.mask) state.mask.css('z-index', $.fn.window.defaults.zIndex++);
+				if (state.shadow) state.shadow.css('z-index', $.fn.window.defaults.zIndex++);
+				state.window.css('z-index', $.fn.window.defaults.zIndex++);
 				
 				if (!state.proxy){
 					state.proxy = $('<div class="window-proxy"></div>').insertAfter(state.window);

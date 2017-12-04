@@ -105,7 +105,7 @@ var _1e=0;
 var _1f=this.groups;
 for(var i=0;i<_1f.length;i++){
 var _20=_1f[i];
-_1d.push("<div class=\"datagrid-group\" group-main="+i+" style=\"height:25px;overflow:hidden;border-bottom:1px solid #ccc;\">");
+_1d.push("<div class=\"datagrid-group\" group-index="+i+" style=\"height:25px;overflow:hidden;border-bottom:1px solid #ccc;\">");
 _1d.push("<table cellspacing=\"0\" cellpadding=\"0\" border=\"0\" style=\"height:100%\"><tbody>");
 _1d.push("<tr>");
 _1d.push("<td style=\"border:0;\">");
@@ -124,7 +124,7 @@ var cls=(_1e%2&&_1a.striped)?"class=\"datagrid-row datagrid-row-alt\"":"class=\"
 var _21=_1a.rowStyler?_1a.rowStyler.call(_16,_1e,_20.rows[j]):"";
 var _22=_21?"style=\""+_21+"\"":"";
 var _23=_19.rowIdPrefix+"-"+(_18?1:2)+"-"+_1e;
-_1d.push("<tr id=\""+_23+"\" datagrid-row-main=\""+_1e+"\" "+cls+" "+_22+">");
+_1d.push("<tr id=\""+_23+"\" datagrid-row-index=\""+_1e+"\" "+cls+" "+_22+">");
 _1d.push(this.renderRow.call(this,_16,_1c,_18,_1e,_20.rows[j]));
 _1d.push("</tr>");
 _1e++;
@@ -146,7 +146,7 @@ var _29=_28.find("div.datagrid-group");
 }
 $("<td style=\"border:0;text-align:center;width:25px\"><span class=\"datagrid-row-expander datagrid-row-collapse\" style=\"display:inline-block;width:16px;height:16px;cursor:pointer\">&nbsp;</span></td>").insertBefore(_29.find("td"));
 _26.find("div.datagrid-group").each(function(){
-var _2a=$(this).attr("group-main");
+var _2a=$(this).attr("group-index");
 $(this).find("span.datagrid-row-expander").bind("click",{groupIndex:_2a},function(e){
 if($(this).hasClass("datagrid-row-collapse")){
 $(_24).datagrid("collapseGroup",e.data.groupIndex);
@@ -191,7 +191,7 @@ $.extend($.fn.datagrid.methods,{expandGroup:function(jq,_34){
 return jq.each(function(){
 var _35=$.data(this,"datagrid").dc.view;
 if(_34!=undefined){
-var _36=_35.find("div.datagrid-group[group-main=\""+_34+"\"]");
+var _36=_35.find("div.datagrid-group[group-index=\""+_34+"\"]");
 }else{
 var _36=_35.find("div.datagrid-group");
 }
@@ -206,7 +206,7 @@ $(this).datagrid("fixRowHeight");
 return jq.each(function(){
 var _39=$.data(this,"datagrid").dc.view;
 if(_38!=undefined){
-var _3a=_39.find("div.datagrid-group[group-main=\""+_38+"\"]");
+var _3a=_39.find("div.datagrid-group[group-index=\""+_38+"\"]");
 }else{
 var _3a=_39.find("div.datagrid-group");
 }
