@@ -36,6 +36,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
     <select id="listByMap" resultMap="JarResult">
         SELECT * FROM t_jar
+        <where>
+            <if test="name != null and name != '' ">
+                and name LIKE #{name}
+            </if>
+        </where>
         ORDER BY update_time DESC
         <if test="start != null and pageSize != null">
             limit #{start},#{pageSize}
@@ -44,6 +49,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
     <select id="countByMap" resultType="java.lang.Long">
         SELECT COUNT(*) FROM t_jar
+        <where>
+            <if test="name != null and name != '' ">
+                and name LIKE #{name}
+            </if>
+        </where>
     </select>
+
+    <delete id="deleteByJarId">
+        DELETE FROM t_jar WHERE jar_id = #{jarId}
+    </delete>
 
 </mapper> 

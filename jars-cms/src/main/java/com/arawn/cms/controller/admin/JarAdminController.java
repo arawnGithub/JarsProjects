@@ -5,6 +5,7 @@ import com.arawn.cms.entity.Jar;
 import com.arawn.cms.entity.PageBean;
 import com.arawn.cms.service.JarService;
 import com.arawn.cms.util.FastJsonUtil;
+import com.arawn.cms.util.StringUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -35,11 +36,13 @@ public class JarAdminController {
      */
     @RequestMapping("/list")
     @ResponseBody
-    public String list(@RequestParam("page") Integer page, @RequestParam("rows") Integer rows) throws Exception {
+    public String list(@RequestParam("page") Integer page, @RequestParam("rows") Integer rows,
+                       @RequestParam(value = "sName", required = false) String sName) throws Exception {
         PageBean pageBean = new PageBean(page, rows);
 
         // 封装查询条件
         Map<String, Object> map = new HashMap<>();
+        map.put("name", StringUtil.formatLike(sName));
         map.put("start", pageBean.getStart());
         map.put("pageSize", pageBean.getPageSize());
 

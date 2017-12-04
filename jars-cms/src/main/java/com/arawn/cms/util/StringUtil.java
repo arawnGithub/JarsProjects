@@ -30,4 +30,16 @@ public class StringUtil {
         return false;
     }
 
+    /**
+     * 格式化模糊查询
+     * @param str
+     * @return
+     */
+    public static String formatLike(String str) {
+        if (isNotEmpty(str)) {
+            return "%" + str + "%";
+        }
+        return null;
+    }
+
 }

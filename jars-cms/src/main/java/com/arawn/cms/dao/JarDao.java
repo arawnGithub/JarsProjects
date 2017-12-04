@@ -38,4 +38,11 @@ public interface JarDao {
      * @return
      */
     Long countByMap(Map<String, Object> map);
+
+    /**
+     * 根据jarId删除
+     * @param jarId
+     * @return
+     */
+    int deleteByJarId(String jarId);
 }
