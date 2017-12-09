@@ -47,7 +47,7 @@ public class CrawlerMain {
      * 初始化
      */
     public static void init() {
-        logger.info("读取爬虫配置文件");
+        logger.info("开始读取爬虫配置文件");
 
         FileReader fileReader = null;
         BufferedReader bufferedReader = null;
@@ -56,7 +56,7 @@ public class CrawlerMain {
             bufferedReader = new BufferedReader(fileReader);
 
             String line = null;
-            while((line = bufferedReader.readLine()) != null) {
+            while ((line = bufferedReader.readLine()) != null) {
                 addUrl(line, LogMessageEnum.INIT.getDescription());
             }
 
@@ -133,6 +133,10 @@ public class CrawlerMain {
      * @param webPageContent
      */
     public static void parseWebPage(String webPageContent, String prefixUrl) {
+        if (StringUtil.isEmpty(webPageContent)) {
+            return;
+        }
+
         Document doc = Jsoup.parse(webPageContent);
         Elements links = doc.select(CrawlerConstant.A_TAG); // 获取所有超链接元素
 

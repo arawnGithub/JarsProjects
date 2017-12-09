@@ -1,9 +1,8 @@
 package com.arawn.crawler.runnable;
 
 import com.arawn.crawler.cache.JVMCache;
-import com.arawn.crawler.em.LogMessageEnum;
-import com.arawn.crawler.main.CrawlerMain;
 import com.arawn.crawler.helper.HttpClientHelper;
+import com.arawn.crawler.main.CrawlerMain;
 import com.arawn.crawler.util.StringUtil;
 import org.apache.log4j.Logger;
 
@@ -22,12 +21,11 @@ public class CrawlerRunnable implements Runnable {
         }
         logger.info("执行解析url:" + url);
 
+        // 执行Http请求
         String webPageContent = HttpClientHelper.sendHttpGet(url);
-        if (StringUtil.isEmpty(webPageContent)) {
-            CrawlerMain.addUrl(url, LogMessageEnum.EXCEPTION.getDescription());
-        } else {
-            CrawlerMain.parseWebPage(webPageContent, url);
-        }
+
+        // 解析网页
+        CrawlerMain.parseWebPage(webPageContent, url);
     }
 
 }
