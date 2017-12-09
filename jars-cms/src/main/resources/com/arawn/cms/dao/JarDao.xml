@@ -22,7 +22,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </select>
 
     <insert id="insert">
-        INSERT INTO t_jar VALUES(NULL, #{jarId}, #{name}, #{path}, #{type}, 0, 0, 0, 0, NOW(), NOW())
+        INSERT INTO t_jar VALUES(NULL, #{jarId}, #{name}, #{path}, #{type}, 0, 0, 1, 0, NOW(), NOW())
     </insert>
 
     <update id="updateByJarId">
