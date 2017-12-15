@@ -41,6 +41,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                 down_hit = #{downHit},
             </if>
         </set>
+        ,update_time = NOW()
         WHERE jarId = #{jarId}
     </update>
 
