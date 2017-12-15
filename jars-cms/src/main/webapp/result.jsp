@@ -81,20 +81,20 @@
                 </div>
 
                 <div class="datas search">
-                    <ul>
-                        <c:choose>
-                            <c:when test="${resultTotal == 0 }">
-                                <div align="center" style="padding-top: 20px">未查询到结果，请换个关键字试试看(注意：仅支持英文jar包名称搜索，多个关键字之间用空格隔开)</div>
-                            </c:when>
-                            <c:otherwise>
+                    <c:choose>
+                        <c:when test="${resultTotal == 0}">
+                            <div align="center" style="padding-top: 20px">未查询到结果，请换个关键字试试看(注意：仅支持英文jar包名称搜索，多个关键字之间用空格隔开)</div>
+                        </c:when>
+                        <c:otherwise>
+                            <ul>
                                 <c:forEach var="jar" items="${jarList}">
                                     <li style="margin-bottom: 20px">
                                         <span class="title"><a href="${pageContext.request.contextPath}/jar/view/${jar.jarId}.html" target="_blank" title="${jar.name}.jar下载">${jar.hasTagName}</a></span>
                                     </li>
                                 </c:forEach>
-                            </c:otherwise>
-                        </c:choose>
-                    </ul>
+                            </ul>
+                        </c:otherwise>
+                    </c:choose>
                 </div>
 
                 <nav>

@@ -134,11 +134,11 @@ public class JarIndex {
                 TokenStream tokenStream = analyzer.tokenStream(IndexConstant.NAME, new StringReader(name));
                 String hasTagName = highlighter.getBestFragment(tokenStream, name);
 
-                // 如果高亮的jar名称为空，则设置原先的名称
-                if (StringUtil.isEmpty(hasTagName)) {
-                    jar.setHasTagName(name);
-                } else {
+                // 如果高亮的jar名称不为空才设置，否则设置原先的jar名称
+                if (StringUtil.isNotEmpty(hasTagName)) {
                     jar.setHasTagName(hasTagName);
+                } else {
+                    jar.setHasTagName(name);
                 }
             }
 

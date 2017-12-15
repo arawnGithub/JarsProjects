@@ -160,7 +160,7 @@
                         <table>
                             <c:choose>
                                 <c:when test="${relJarList.size() > 0}">
-                                    <c:forEach var="jar" items="${relJarList }" varStatus="status">
+                                    <c:forEach var="jar" items="${relJarList}" varStatus="status">
                                         <c:if test="${status.index % 2 == 0}">
                                             <tr>
                                         </c:if>
