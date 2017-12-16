@@ -18,10 +18,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="name != null and name != '' ">
                 AND name like #{name}
             </if>
+            <if test="start != null and pageSize != null">
+                AND id > = (SELECT id FROM t_tag LIMIT #{start}, 1) LIMIT #{pageSize}
+            </if>
         </where>
-        <if test="start != null and pageSize != null">
-            LIMIT #{start},#{pageSize}
-        </if>
     </select>
 
     <select id="countByMap" resultType="java.lang.Long">
