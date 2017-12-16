@@ -19,7 +19,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                 AND name like #{name}
             </if>
             <if test="start != null and pageSize != null">
-                AND id > = (SELECT id FROM t_tag LIMIT #{start}, 1) LIMIT #{pageSize}
+                AND id >= (SELECT id FROM t_tag LIMIT #{start}, 1) LIMIT #{pageSize}
             </if>
         </where>
     </select>
