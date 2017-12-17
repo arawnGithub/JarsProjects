@@ -8,7 +8,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="name" column="name"/>
     </resultMap>
 
-    <select id="listByRand" parameterType="integer" resultMap="TagResult">
+    <select id="listByRand" resultMap="TagResult">
         SELECT * FROM t_tag ORDER BY RAND() LIMIT #{n}
     </select>
 
@@ -16,10 +16,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         SELECT * FROM t_tag
         <where>
             <if test="name != null and name != '' ">
-                AND name like #{name}
+                AND name = #{name}
             </if>
             <if test="start != null and pageSize != null">
-                AND id >= (SELECT id FROM t_tag LIMIT #{start}, 1) LIMIT #{pageSize}
+                AND id >= (SELECT id FROM t_tag ORDER BY id ASC LIMIT #{start}, 1) LIMIT #{pageSize}
             </if>
         </where>
     </select>
@@ -28,7 +28,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         SELECT COUNT(*) FROM t_tag
         <where>
             <if test="name != null and name != '' ">
-                AND name LIKE #{name}
+                AND name = #{name}
             </if>
         </where>
     </select>

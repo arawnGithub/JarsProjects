@@ -5,7 +5,6 @@ import com.arawn.cms.entity.PageBean;
 import com.arawn.cms.entity.Tag;
 import com.arawn.cms.service.TagService;
 import com.arawn.cms.util.FastJsonUtil;
-import com.arawn.cms.util.StringUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -42,7 +41,7 @@ public class TagAdminController {
 
         // 封装查询条件
         Map<String, Object> map = new HashMap<>();
-        map.put("name", StringUtil.formatLike(sName));
+        map.put("name", sName);
         map.put("start", pageBean.getStart());
         map.put("size", pageBean.getPageSize());
 
