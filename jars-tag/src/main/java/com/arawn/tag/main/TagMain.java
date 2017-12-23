@@ -35,22 +35,19 @@ public class TagMain {
         List<Jar> jarList = jarDao.listByParam(param);
 
         for (Jar jar : jarList) {
-            String[] nameArray = jar.getName()
-                    .replaceAll(TagConstant.POINT_JAR, TagConstant.EMPTY)
-                    .split(TagConstant.HYPHEN);
-            for (String name : nameArray) {
-                if (name.contains(TagConstant.POINT)) {
-                    continue;
-                }
+			// 更新jar包生成标签状态
+			jarDao.updateTagStateByJarId(jar.getJarId());
+			
+            String tagName = jar.getName().split(TagConstant.HYPHEN)[0];
+			if (tagName.contains(TagConstant.POINT)) {
+                continue;
+            }
 
-                boolean exist = tagDao.existByName(name);
-                if (!exist) {
-                    Tag tag = new Tag();
-                    tag.setName(name);
-                    tagDao.insert(tag);
-
-                    jarDao.updateTagStateByJarId(jar.getJarId());
-                }
+            boolean exist = tagDao.existByName(tagName);
+            if (!exist) {
+                Tag tag = new Tag();
+                tag.setName(tagName);
+                tagDao.insert(tag);
             }
         }
 

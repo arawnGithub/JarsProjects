@@ -18,10 +18,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="name != null and name != '' ">
                 AND name = #{name}
             </if>
-            <if test="start != null and pageSize != null">
-                AND id >= (SELECT id FROM t_tag ORDER BY id ASC LIMIT #{start}, 1) LIMIT #{pageSize}
-            </if>
         </where>
+        <if test="start != null and pageSize != null">
+            LIMIT #{start}, #{pageSize}
+        </if>
     </select>
 
     <select id="countByMap" resultType="java.lang.Long">
@@ -34,7 +34,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </select>
 
     <insert id="insert">
-        INSERT INTO t_tag VALUES(NULL,#{name})
+        INSERT INTO t_tag VALUES(NULL, #{name})
     </insert>
 
     <update id="updateById">

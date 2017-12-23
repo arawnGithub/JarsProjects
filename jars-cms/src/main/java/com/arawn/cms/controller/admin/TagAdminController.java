@@ -35,6 +35,7 @@ public class TagAdminController {
      * @throws Exception
      */
     @RequestMapping("/list")
+    @ResponseBody
     public String list(@RequestParam(value = "page") Integer page, @RequestParam(value = "rows") Integer rows,
                        @RequestParam(value = "sName", required = false) String sName) throws Exception {
         PageBean pageBean = new PageBean(page, rows);
@@ -43,7 +44,7 @@ public class TagAdminController {
         Map<String, Object> map = new HashMap<>();
         map.put("name", sName);
         map.put("start", pageBean.getStart());
-        map.put("size", pageBean.getPageSize());
+        map.put("pageSize", pageBean.getPageSize());
 
         List<Tag> tagList = tagService.listByMap(map);
         Long tagCount = tagService.countByMap(map);

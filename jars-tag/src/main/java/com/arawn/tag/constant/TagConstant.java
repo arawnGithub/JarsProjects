@@ -12,16 +12,6 @@ public class TagConstant {
     public static final String POINT = ".";
 
     /**
-     * .jar
-     */
-    public static final String POINT_JAR = ".jar";
-
-    /**
-     * 空字符串
-     */
-    public static final String EMPTY = "";
-
-    /**
      * 中横线
      */
     public static final String HYPHEN = "-";

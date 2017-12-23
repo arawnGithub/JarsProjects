@@ -42,7 +42,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             </if>
         </set>
         ,update_time = NOW()
-        WHERE jarId = #{jarId}
+        WHERE jar_id = #{jarId}
     </update>
 
     <select id="listByMap" resultMap="JarResult">
@@ -52,7 +52,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                 AND name = #{name}
             </if>
             <if test="start != null and pageSize != null">
-                AND id >= (SELECT id FROM t_jar ORDER BY id ASC LIMIT #{start}, 1) LIMIT #{pageSize}
+                AND update_time &lt;= (SELECT update_time FROM t_jar ORDER BY update_time DESC LIMIT #{start}, 1)
+                ORDER BY update_time DESC LIMIT #{pageSize}
             </if>
         </where>
     </select>
