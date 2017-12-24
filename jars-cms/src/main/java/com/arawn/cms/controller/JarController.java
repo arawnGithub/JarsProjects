@@ -67,11 +67,11 @@ public class JarController {
         mav.addObject("q", q);
         mav.addObject("jarList", jarList.subList(fromIndex, toIndex));
         mav.addObject("resultTotal", resultTotal);
-        mav.addObject("tagList", tagService.listByRand(150));
+        mav.addObject("tagList", tagService.listByRand(200));
         mav.addObject("pageCode", PageUtil.genPagination(request.getContextPath() + "/jar/query.do", resultTotal, page, 20, "&q=" + q));
         mav.setViewName("result");
 
-        logger.info("JarController query end ==>" + FastJsonUtil.toJSONString(mav));
+        // logger.info("JarController query end ==>" + FastJsonUtil.toJSONString(mav));
         return mav;
     }
 
@@ -98,7 +98,7 @@ public class JarController {
 
         mav.addObject("jar", jar);
         mav.addObject("relJarList", jarIndex.searchJar(jar.getName().replaceAll(IndexConstant.HYPHEN, IndexConstant.BLANK), 16));
-        mav.addObject("tagList", tagService.listByRand(150));
+        mav.addObject("tagList", tagService.listByRand(200));
         mav.setViewName("view");
 
         logger.info("JarController view end ==>" + FastJsonUtil.toJSONString(mav));

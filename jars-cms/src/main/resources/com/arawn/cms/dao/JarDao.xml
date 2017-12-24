@@ -52,8 +52,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                 AND name = #{name}
             </if>
             <if test="start != null and pageSize != null">
-                AND update_time &lt;= (SELECT update_time FROM t_jar ORDER BY update_time DESC LIMIT #{start}, 1)
-                ORDER BY update_time DESC LIMIT #{pageSize}
+                AND id &gt;= (SELECT id FROM t_jar ORDER BY id ASC LIMIT #{start}, 1)
+                ORDER BY id ASC LIMIT #{pageSize}
             </if>
         </where>
     </select>
