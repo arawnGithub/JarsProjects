@@ -74,14 +74,13 @@
         }
 
         function openJarAddDialog() {
-            console.log(1);
             $("#dlg").dialog("open").dialog("setTitle", "添加Jar包信息");
             url = "${pageContext.request.contextPath}/admin/jar/save.do";
         }
 
         function openJarModifyDialog() {
             var selectedRows = $("#dg").datagrid("getSelections");
-            if (selectedRows != 1) {
+            if (selectedRows.length != 1) {
                 $.messager.alert("系统提示", "请选择一条要修改的数据");
                 return;
             }
