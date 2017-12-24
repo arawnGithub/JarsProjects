@@ -4,7 +4,6 @@ import com.arawn.cms.constant.IndexConstant;
 import com.arawn.cms.entity.Jar;
 import com.arawn.cms.index.JarIndex;
 import com.arawn.cms.service.JarService;
-import com.arawn.cms.service.TagService;
 import com.arawn.cms.util.FastJsonUtil;
 import com.arawn.cms.util.PageUtil;
 import com.arawn.cms.util.StringUtil;
@@ -29,9 +28,6 @@ import java.util.List;
 public class JarController {
 
     private static Logger logger = Logger.getLogger(JarController.class);
-
-    @Resource
-    private TagService tagService;
 
     @Resource
     private JarService jarService;
@@ -67,7 +63,6 @@ public class JarController {
         mav.addObject("q", q);
         mav.addObject("jarList", jarList.subList(fromIndex, toIndex));
         mav.addObject("resultTotal", resultTotal);
-        mav.addObject("tagList", tagService.listByRand(200));
         mav.addObject("pageCode", PageUtil.genPagination(request.getContextPath() + "/jar/query.do", resultTotal, page, 20, "&q=" + q));
         mav.setViewName("result");
 
@@ -98,10 +93,9 @@ public class JarController {
 
         mav.addObject("jar", jar);
         mav.addObject("relJarList", jarIndex.searchJar(jar.getName().replaceAll(IndexConstant.HYPHEN, IndexConstant.BLANK), 16));
-        mav.addObject("tagList", tagService.listByRand(200));
         mav.setViewName("view");
 
-        logger.info("JarController view end ==>" + FastJsonUtil.toJSONString(mav));
+        // logger.info("JarController view end ==>" + FastJsonUtil.toJSONString(mav));
         return mav;
     }
 

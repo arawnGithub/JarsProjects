@@ -172,6 +172,12 @@
             <artifactId>lombok</artifactId>
         </dependency>
 
+        <!-- Quartz framework -->
+        <dependency>
+            <groupId>org.quartz-scheduler</groupId>
+            <artifactId>quartz</artifactId>
+        </dependency>
+
         <!-- 添加fastjson依赖 -->
         <dependency>
             <groupId>com.alibaba</groupId>

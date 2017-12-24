@@ -32,6 +32,7 @@
         <commons-logging.version>1.1.1</commons-logging.version>
         <druid.version>1.0.16</druid.version>
         <lombok.version>1.16.6</lombok.version>
+        <quartz.version>2.2.1</quartz.version>
         <fastjson.version>1.2.40</fastjson.version>
     </properties>
 
@@ -263,6 +264,13 @@
                 <artifactId>lombok</artifactId>
                 <version>${lombok.version}</version>
                 <scope>provided</scope>
+            </dependency>
+
+            <!-- Quartz framework -->
+            <dependency>
+                <groupId>org.quartz-scheduler</groupId>
+                <artifactId>quartz</artifactId>
+                <version>${quartz.version}</version>
             </dependency>
 
             <!-- 添加fastjson依赖 -->

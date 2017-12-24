@@ -42,9 +42,9 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
-    <!-- Spring监听器 -->
+    <!-- 自定义监听器，继承Spring监听器 -->
     <listener>
-        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+        <listener-class>com.arawn.cms.controller.InitComponent</listener-class>
     </listener>
 
 
