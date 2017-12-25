@@ -45,15 +45,19 @@ public class JarController {
     public ModelAndView query(@RequestParam("q") String q, @RequestParam(value = "page", required = false) Integer page, HttpServletRequest request) throws Exception {
         logger.info("JarController query start ==>" + FastJsonUtil.toJSONString(q));
 
-        if (StringUtil.isEmpty(q)) {
-            return null;
+        ModelAndView mav = new ModelAndView();
+        // 做一层防守
+        if (StringUtil.isEmpty(q) || StringUtil.isContainChinese(q)) {
+            mav.addObject("q", q);
+            mav.addObject("resultTotal", 0);
+            mav.setViewName("result");
+            return mav;
         }
 
+        // 不传页码默认第一页
         if (page == null) {
             page = 1;
         }
-
-        ModelAndView mav = new ModelAndView();
         List<Jar> jarList = jarIndex.searchJar(q.trim(), 200);
 
         int resultTotal = jarList.size();
@@ -87,6 +91,10 @@ public class JarController {
         ModelAndView mav = new ModelAndView();
         Jar jar = jarService.queryByJarId(jarId);
 
+        if (jar == null) {
+            return null;
+        }
+
         // 更新点击次数
         jar.setClick(jar.getClick() + 1);
         jarService.updateByJarId(jar);
@@ -115,6 +123,10 @@ public class JarController {
         }
 
         Jar jar = jarService.queryByJarId(jarId);
+
+        if (jar == null) {
+            return;
+        }
 
         // 更新下载次数
         jar.setDownHit(jar.getDownHit() + 1);

@@ -12,7 +12,7 @@ public class StringUtil {
      * @return
      */
     public static boolean isEmpty(String str) {
-        if (str == null || "".equals(str)) {
+        if (str == null || "".equals(str.trim())) {
             return true;
         }
         return false;
@@ -24,7 +24,7 @@ public class StringUtil {
      * @return
      */
     public static boolean isNotEmpty(String str) {
-        if (str != null && !"".equals(str)) {
+        if (str != null && !"".equals(str.trim())) {
             return true;
         }
         return false;
