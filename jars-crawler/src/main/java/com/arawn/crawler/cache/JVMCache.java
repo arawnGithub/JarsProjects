@@ -1,7 +1,7 @@
 package com.arawn.crawler.cache;
 
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 
 /**
  * 模拟缓存
@@ -12,7 +12,7 @@ public class JVMCache {
     /**
      * 等待爬取的URL
      */
-    public static Queue<String> waitForCrawlerUrls = new LinkedList<>();
+    public static BlockingQueue<String> waitForCrawlerUrls = new LinkedBlockingQueue<>();
 
     /**
      * 统计发现多少个目标(jar包)

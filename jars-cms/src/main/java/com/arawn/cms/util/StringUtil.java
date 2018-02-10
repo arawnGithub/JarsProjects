@@ -35,6 +35,18 @@ public class StringUtil {
     }
 
     /**
+     * 格式化模糊查询
+     * @param str
+     * @return
+     */
+    public static String formatLike(String str) {
+        if (isEmpty(str)) {
+            return null;
+        }
+        return str + "%";
+    }
+
+    /**
      * 生成JarId
      * @return
      */

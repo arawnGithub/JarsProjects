@@ -49,7 +49,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         SELECT * FROM t_jar
         <where>
             <if test="name != null and name != '' ">
-                AND name = #{name}
+                AND name LIKE #{name}
             </if>
             <if test="start != null and pageSize != null">
                 AND id &gt;= (SELECT id FROM t_jar ORDER BY id ASC LIMIT #{start}, 1)

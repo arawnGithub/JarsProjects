@@ -46,7 +46,7 @@ public class JarAdminController {
 
         // 封装查询条件
         Map<String, Object> map = new HashMap<>();
-        map.put("name", sName);
+        map.put("name", StringUtil.formatLike(sName));
         map.put("start", pageBean.getStart());
         map.put("pageSize", pageBean.getPageSize());
 
