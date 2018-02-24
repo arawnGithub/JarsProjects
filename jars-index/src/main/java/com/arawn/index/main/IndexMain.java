@@ -3,6 +3,7 @@ package com.arawn.index.main;
 import com.arawn.index.constant.IndexConstant;
 import com.arawn.lib.dao.JarDao;
 import com.arawn.lib.entity.Jar;
+import lombok.Cleanup;
 import org.apache.log4j.Logger;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
@@ -34,12 +35,13 @@ public class IndexMain {
     public static void main(String[] args) {
         logger.info("创建索引开始");
 
+        @Cleanup IndexWriter indexWriter = null;
         try {
             Directory directory = FSDirectory.open(Paths.get(IndexConstant.FILE_PATH));
 
             Analyzer analyzer = new StandardAnalyzer();
             IndexWriterConfig indexWriterConfig = new IndexWriterConfig(analyzer);
-            IndexWriter indexWriter = new IndexWriter(directory, indexWriterConfig);
+            indexWriter = new IndexWriter(directory, indexWriterConfig);
 
             Jar param = new Jar();
             param.setIndexState(0);
@@ -59,7 +61,6 @@ public class IndexMain {
                 jarDao.updateIndexStateByJarId(jar.getJarId());
             }
 
-            indexWriter.close();
         } catch (Exception e) {
             logger.error("创建索引异常", e);
         }

@@ -32,19 +32,4 @@ public class JdbcUtil {
         return connection;
     }
 
-    /**
-     * 关闭数据库连接
-     * @param connection
-     * @throws Exception
-     */
-    public static void closeCon(Connection connection) {
-        try {
-            if (connection != null) {
-                connection.close();
-            }
-        } catch (Exception e) {
-            logger.error("关闭数据库连接失败", e);
-        }
-    }
-
 }

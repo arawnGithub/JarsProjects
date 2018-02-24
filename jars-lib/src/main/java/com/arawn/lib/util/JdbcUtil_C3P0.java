@@ -39,19 +39,4 @@ public class JdbcUtil_C3P0 {
         return connection;
     }
 
-    /**
-     * 释放数据库连接
-     *
-     * @param conn
-     */
-    public static void release(Connection conn) {
-        if (conn != null) {
-            try {
-                conn.close();
-            } catch (Exception e) {
-                logger.error(e.getMessage());
-            }
-        }
-    }
-
 }	

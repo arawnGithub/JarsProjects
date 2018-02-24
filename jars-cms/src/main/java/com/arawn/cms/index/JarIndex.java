@@ -3,6 +3,7 @@ package com.arawn.cms.index;
 import com.arawn.cms.constant.IndexConstant;
 import com.arawn.cms.entity.Jar;
 import com.arawn.cms.util.StringUtil;
+import lombok.Cleanup;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.TokenStream;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
@@ -53,7 +54,7 @@ public class JarIndex {
      * @throws Exception
      */
     public void addIndex(Jar jar) throws Exception {
-        IndexWriter writer = getWriter();
+        @Cleanup IndexWriter writer = getWriter();
 
         Document document = new Document();
         document.add(new StringField(IndexConstant.JAR_ID,
@@ -62,7 +63,6 @@ public class JarIndex {
                 jar.getName().replaceAll(IndexConstant.HYPHEN, IndexConstant.BLANK), Field.Store.YES));
 
         writer.addDocument(document);
-        writer.close();
     }
 
     /**
@@ -71,7 +71,7 @@ public class JarIndex {
      * @throws Exception
      */
     public void updateIndex(Jar jar) throws Exception {
-        IndexWriter writer = getWriter();
+        @Cleanup IndexWriter writer = getWriter();
 
         Document document = new Document();
         document.add(new StringField(IndexConstant.JAR_ID,
@@ -80,7 +80,6 @@ public class JarIndex {
                 jar.getName().replaceAll(IndexConstant.HYPHEN, IndexConstant.BLANK), Field.Store.YES));
 
         writer.updateDocument(new Term(IndexConstant.JAR_ID, jar.getJarId()), document);
-        writer.close();
     }
 
     /**
@@ -89,12 +88,11 @@ public class JarIndex {
      * @throws Exception
      */
     public void deleteIndex(String jarId) throws Exception {
-        IndexWriter writer = getWriter();
+        @Cleanup IndexWriter writer = getWriter();
 
         writer.deleteDocuments(new Term(IndexConstant.JAR_ID, jarId));
         writer.forceMergeDeletes(); // 强制删除
         writer.commit();
-        writer.close();
     }
 
     /**
@@ -144,7 +142,6 @@ public class JarIndex {
 
             jarList.add(jar);
         }
-
         return jarList;
     }
 
