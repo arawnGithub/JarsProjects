@@ -3,7 +3,6 @@ package com.arawn.crawler.helper;
 import com.arawn.crawler.constant.HttpConstant;
 import com.arawn.crawler.em.LogMessageEnum;
 import com.arawn.crawler.main.CrawlerMain;
-import lombok.Cleanup;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.config.RequestConfig;
@@ -44,7 +43,7 @@ public class HttpClientHelper {
                 .build();
         httpGet.setConfig(requestConfig);
 
-        @Cleanup CloseableHttpResponse response = null;
+        CloseableHttpResponse response = null;
         String responseContent = null;
         try {
             response = httpClient.execute(httpGet);
@@ -58,6 +57,14 @@ public class HttpClientHelper {
             CrawlerMain.addUrl(url, LogMessageEnum.EXCEPTION.getDescription());
         } catch (Exception e) {
             logger.error(e.getMessage());
+        } finally {
+            if (response != null) {
+                try {
+                    response.close();
+                } catch (IOException e) {
+                    logger.error(e.getMessage());
+                }
+            }
         }
 
         return responseContent;

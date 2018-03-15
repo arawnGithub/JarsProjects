@@ -2,7 +2,6 @@ package com.arawn.lib.dao;
 
 import com.arawn.lib.entity.Jar;
 import com.arawn.lib.util.JdbcUtil_C3P0;
-import lombok.Cleanup;
 import org.apache.log4j.Logger;
 
 import java.sql.Connection;
@@ -26,7 +25,7 @@ public class JarDao {
      * @return
      */
     public boolean existByName(String name) {
-        @Cleanup Connection connection = JdbcUtil_C3P0.getConnection();
+        Connection connection = JdbcUtil_C3P0.getConnection();
         String sql = "SELECT * FROM t_jar WHERE name=?";
 
         boolean exist = false;
@@ -39,6 +38,8 @@ public class JarDao {
             }
         } catch (Exception e) {
             logger.error("JarDao existByName ==>", e);
+        } finally {
+            JdbcUtil_C3P0.closeConnection(connection);
         }
         return exist;
     }
@@ -48,7 +49,7 @@ public class JarDao {
      * @param jar
      */
     public void insert(Jar jar) {
-        @Cleanup Connection connection = JdbcUtil_C3P0.getConnection();
+        Connection connection = JdbcUtil_C3P0.getConnection();
         String sql = "INSERT INTO t_jar VALUES(NULL,?,?,?,?,0,0,0,0,NOW(),NOW())";
 
         try {
@@ -68,6 +69,8 @@ public class JarDao {
             logger.info("插入" + jar.getName() + " ==> result:" + result);
         } catch (Exception e) {
             logger.error("JarDao insert ==>", e);
+        } finally {
+            JdbcUtil_C3P0.closeConnection(connection);
         }
     }
 
@@ -77,7 +80,7 @@ public class JarDao {
      * @return
      */
     public List<Jar> listByParam(Jar param) {
-        @Cleanup Connection connection = JdbcUtil_C3P0.getConnection();
+        Connection connection = JdbcUtil_C3P0.getConnection();
         StringBuilder sql = new StringBuilder("SELECT * FROM t_jar");
         if (param.getTagState() != null) {
             sql.append(" and tag_state=" + param.getTagState());
@@ -103,6 +106,8 @@ public class JarDao {
             }
         } catch (Exception e) {
             logger.error("JarDao list ==>", e);
+        } finally {
+            JdbcUtil_C3P0.closeConnection(connection);
         }
         return jarList;
     }
@@ -112,7 +117,7 @@ public class JarDao {
      * @param jarId
      */
     public void updateTagStateByJarId(String jarId) {
-        @Cleanup Connection connection = JdbcUtil_C3P0.getConnection();
+        Connection connection = JdbcUtil_C3P0.getConnection();
         String sql = "UPDATE t_jar SET tag_state=1,update_time=NOW() WHERE jar_id=?";
 
         try {
@@ -121,6 +126,8 @@ public class JarDao {
             preparedStatement.executeUpdate();
         } catch (Exception e) {
             logger.error("JarDao updateTagStateByJarId ==>", e);
+        } finally {
+            JdbcUtil_C3P0.closeConnection(connection);
         }
     }
 
@@ -129,7 +136,7 @@ public class JarDao {
      * @param jarId
      */
     public void updateIndexStateByJarId(String jarId) {
-        @Cleanup Connection connection = JdbcUtil_C3P0.getConnection();
+        Connection connection = JdbcUtil_C3P0.getConnection();
         String sql = "UPDATE t_jar SET index_state=1,update_time=NOW() WHERE jar_id=?";
 
         try {
@@ -138,6 +145,8 @@ public class JarDao {
             preparedStatement.executeUpdate();
         } catch (Exception e) {
             logger.error("JarDao updateIndexStateByJarId ==>", e);
+        } finally {
+            JdbcUtil_C3P0.closeConnection(connection);
         }
     }
 

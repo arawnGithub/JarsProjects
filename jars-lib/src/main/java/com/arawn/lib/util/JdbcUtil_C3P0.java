@@ -4,6 +4,7 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 import org.apache.log4j.Logger;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 
 /**
  * c3p0工具类
@@ -37,6 +38,21 @@ public class JdbcUtil_C3P0 {
             logger.error(e.getMessage());
         }
         return connection;
+    }
+
+    /**
+     * 关闭数据库连接
+     *
+     * @param connection
+     */
+    public static void closeConnection(Connection connection) {
+        if (connection != null) {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                logger.error(e.getMessage());
+            }
+        }
     }
 
 }	

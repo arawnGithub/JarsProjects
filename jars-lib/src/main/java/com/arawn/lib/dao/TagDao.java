@@ -36,7 +36,7 @@ public class TagDao {
         } catch (Exception e) {
             logger.error("TagDao existByName ==>", e);
         } finally {
-            JdbcUtil_C3P0.release(connection);
+            JdbcUtil_C3P0.closeConnection(connection);
         }
         return exist;
     }
@@ -58,7 +58,7 @@ public class TagDao {
         } catch (Exception e) {
             logger.error("TagDao insert ==>", e);
         } finally {
-            JdbcUtil_C3P0.release(connection);
+            JdbcUtil_C3P0.closeConnection(connection);
         }
     }
 

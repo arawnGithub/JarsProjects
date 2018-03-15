@@ -7,7 +7,6 @@ import com.arawn.crawler.runnable.CrawlerRunnable;
 import com.arawn.crawler.util.StringUtil;
 import com.arawn.lib.dao.JarDao;
 import com.arawn.lib.entity.Jar;
-import lombok.Cleanup;
 import org.apache.log4j.Logger;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -50,8 +49,8 @@ public class CrawlerMain {
     public static void init() {
         logger.info("开始读取爬虫配置文件");
 
-        @Cleanup FileReader fileReader = null;
-        @Cleanup BufferedReader bufferedReader = null;
+        FileReader fileReader = null;
+        BufferedReader bufferedReader = null;
         try {
             fileReader = new FileReader(CrawlerConstant.FILE_PATH);
             bufferedReader = new BufferedReader(fileReader);
@@ -65,6 +64,21 @@ public class CrawlerMain {
             logger.error("FileNotFoundException", e);
         } catch (IOException e) {
             logger.error("IOException", e);
+        } finally {
+            if (fileReader != null) {
+                try {
+                    fileReader.close();
+                } catch (IOException e) {
+                    logger.error(e.getMessage());
+                }
+            }
+            if (bufferedReader != null) {
+                try {
+                    bufferedReader.close();
+                } catch (IOException e) {
+                    logger.error(e.getMessage());
+                }
+            }
         }
 
         logger.info("完成读取爬虫配置文件");
