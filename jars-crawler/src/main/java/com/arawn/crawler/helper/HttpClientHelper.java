@@ -24,9 +24,19 @@ public class HttpClientHelper {
     private static Logger logger = Logger.getLogger(HttpClientHelper.class);
 
     /**
+     * 请求配置
+     */
+    private static RequestConfig requestConfig = RequestConfig.custom()
+            .setSocketTimeout(HttpConstant.SOCKET_TIMEOUT) // 设置读取超时时间
+            .setConnectTimeout(HttpConstant.CONNECT_TIMEOUT) // 设置连接超时时间
+            .build();
+
+    /**
      * 初始化HttpClient实例
      */
-    private static CloseableHttpClient httpClient = HttpClients.createDefault();
+    private static CloseableHttpClient httpClient = HttpClients.custom()
+            .setDefaultRequestConfig(requestConfig)
+            .build();
 
     /**
      * 发送Get请求
@@ -36,12 +46,6 @@ public class HttpClientHelper {
     public static String sendHttpGet(String url) {
         // 创建HttpGet实例
         HttpGet httpGet = new HttpGet(url);
-
-        RequestConfig requestConfig = RequestConfig.custom()
-                .setSocketTimeout(HttpConstant.SOCKET_TIMEOUT) // 设置读取超时时间
-                .setConnectTimeout(HttpConstant.CONNECT_TIMEOUT) // 设置连接超时时间
-                .build();
-        httpGet.setConfig(requestConfig);
 
         CloseableHttpResponse response = null;
         String responseContent = null;
