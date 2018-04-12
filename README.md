@@ -1,2 +1,2 @@
 # JarsProjects
-Jar包下载网
+爬取Maven中央仓库Jar包
